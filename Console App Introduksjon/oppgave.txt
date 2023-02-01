@@ -1,0 +1,6 @@
+﻿
+
+
+1. Utvide klassen Person
+2. I console applikasjonen legge 10 personer med ulike data i en liste og printe ut på skjerm
+	hint: lag funksjonen ToString() for å printe ut verdier !!

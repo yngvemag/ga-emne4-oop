@@ -1,0 +1,35 @@
+﻿• using: Importerer en annen namespace i programmet ditt
+• namespace: Definerer en logisk gruppe av klasser og andre elementer
+• class: Definerer en klasse i C#, en blåkopi av en objektinstans
+• public: Gir tilgang til en klasse eller en metode fra andre klasser eller programmer
+• private: Begrenser tilgangen til en klasse eller en metode til kun den aktuelle klassen
+• protected: Gir tilgang til en klasse eller en metode til den aktuelle klassen og dens arver
+• internal: Gir tilgang til en klasse eller en metode til kun samme assembly (prosjekt)
+• static: Angir at en metode eller en variabel tilhører klassen, ikke en objektinstans
+• void: Indikerer at en metode ikke returnerer noe
+• int: En heltallsvariabeltype
+• float: En flyttallsvariabeltype med enklere presisjon
+• double: En flyttallsvariabeltype med dobbelt presisjon
+• string: En tekstvariabeltype
+• char: En tegnvariabeltype
+• bool: En boolsk variabeltype (sann eller usann)
+• if: En betinget kontrollstruktur
+• else: En annen blokk som utføres hvis betingelsen i en if-setning ikke er oppfylt
+• switch: En kontrollstruktur som lar deg teste en variabel mot flere tilfeller
+• case: En del av en switch-struktur som definerer et tilfelle å teste
+• for: En repetisjonskontrollstruktur
+• while: En annen repetisjonskontrollstruktur
+• do: En repetisjonskontrollstruktur som sikrer at kroppen utføres minst en gang
+• continue: Går til neste iterasjon av en repetisjonskontrollstruktur
+• break: Avbryter en repetisjonskontrollstruktur
+• return: Returnerer en verdi fra en metode
+• new: Oppretter en ny instans av en klasse
+• override: Angir at en metode skal overstyre en metode i en baseklasse
+• abstract: Indikerer at en klasse eller en metode ikke kan instansieres, men må overstyres i en arvet klasse
+• sealed: Angir at en klasse eller en metode ikke kan arves av en annen klasse
+• delegate: Definerer en datatype som kan referere til en metode
+• event: En del av en delegat som lar deg beskrive en hendelse
+• try: En kontrollstruktur som gir deg muligheten til å håndtere unntak (feil) i en try-catch-blokk
+• catch: En del av en try-catch-struktur som fanger og behandler unntak
+• finally: En blokk som alltid utføres, enten unntaket ble håndtert eller ikke, etter en try-catch-blokk
+• throw: Kaster et unntak for å indikere en feil til kallende kode
