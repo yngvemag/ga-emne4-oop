@@ -53,6 +53,7 @@ internal class Program
 
                 person.FirstName = arr[0];
                 person.LastName = arr[1];
+                person.SetDayOfBirth($"{arr[2].Trim()}-{arr[3].Trim()}-{arr[4].Trim()}", "yyyy-M-d");
 
 
                 // legger til i listen

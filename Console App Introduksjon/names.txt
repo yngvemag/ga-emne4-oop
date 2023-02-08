@@ -1,4 +1,4 @@
-﻿Yngve, Magnussen, 1973, 04, 30
+﻿Yngve, Magnussen, 1973, 4, 30
 Ola, Normann, 2000, 10, 4
 Kari, Normann, 1998, 7, 15
 Petter, Hansen, 1988, 6, 12
