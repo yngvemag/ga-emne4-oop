@@ -1,4 +1,5 @@
 ﻿using Console_App_Introduksjon.Gokstad;
+using System.Text;
 
 internal class Program
 {   
@@ -67,7 +68,24 @@ internal class Program
             {
                 Console.WriteLine(person.ToString());
             }
-            
+
+            string customerFile = "C:\\ga\\Emne 4 OOP Introduksjon\\Console App Introduksjon\\Customers.csv";
+            using (StreamReader reader = new StreamReader(customerFile, encoding: Encoding.UTF8))
+            {
+                // read first line
+                string? line = reader.ReadLine(); 
+                while ( line != null)
+                {
+                    string[] customerDataArray = line.Split(",");
+
+                    // create customer objekt from Customer class
+                    // add values to properties
+                    // add object to List
+
+                    // read new line
+                    line = reader.ReadLine();
+                }
+            }
         }
 
     }
