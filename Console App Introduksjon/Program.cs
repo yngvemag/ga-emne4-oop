@@ -70,20 +70,20 @@ internal class Program
             }
 
             string customerFile = "C:\\ga\\Emne 4 OOP Introduksjon\\Console App Introduksjon\\Customers.csv";
-            using (StreamReader reader = new StreamReader(customerFile, encoding: Encoding.UTF8))
+            using (StreamReader customerReader = new (customerFile, encoding: Encoding.UTF8))
             {
                 // read first line
-                string? line = reader.ReadLine(); 
-                while ( line != null)
+                string? customerLine = customerReader.ReadLine(); 
+                while (customerLine != null)
                 {
-                    string[] customerDataArray = line.Split(",");
+                    string[] customerDataArray = customerLine.Split(",");
 
                     // create customer objekt from Customer class
                     // add values to properties
                     // add object to List
 
                     // read new line
-                    line = reader.ReadLine();
+                    customerLine = customerReader.ReadLine();
                 }
             }
         }
