@@ -24,6 +24,8 @@ using (StreamReader reader = new(customerFileName))
         string? line = reader.ReadLine();
         while (line != null)
         {
+            Console.WriteLine(line);
+
             // csv - comma separated values
             // CustomerNumber,CustomerName,   Phone,        Address,          City,      Country
             // '103' ,  "Atelier graphique"  ,  40.32.2555  ,"54 rue Royale" ,  Nantes  ,  France

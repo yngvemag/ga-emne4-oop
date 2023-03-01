@@ -6,17 +6,31 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Session 1", "Session 1", "{829CADFF-7CDC-4B8F-845F-A11BE8344D86}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Session 3", "Session 3", "{5648ADC3-3ADC-4358-8E4B-8EC43EC709A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console App Introduksjon", "Console App Introduksjon\Console App Introduksjon.csproj", "{E13E764D-66EB-4543-B9C5-3B0C93AC427B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoProsjekt", "DemoProsjekt\DemoProsjekt.csproj", "{25B024AB-0BBF-430A-8A9B-51A8780744CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerInformation", "CustomerInformation\CustomerInformation.csproj", "{70B54449-3158-45E0-B1B6-78FF4911C59B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{8DF4F13D-2A9D-4AFE-AEC5-E53FD771F383}"
 	ProjectSection(SolutionItems) = preProject
 		Customers.csv = Customers.csv
 		Employees.csv = Employees.csv
 		Payments.csv = Payments.csv
+		SelectData.sql = SelectData.sql
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console App Introduksjon", "Console App Introduksjon\Console App Introduksjon.csproj", "{E13E764D-66EB-4543-B9C5-3B0C93AC427B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Session 4", "Session 4", "{D8AC7B42-C7BB-4B5B-AFC4-3C0F848E12B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoProsjekt", "DemoProsjekt\DemoProsjekt.csproj", "{25B024AB-0BBF-430A-8A9B-51A8780744CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicModelsApp", "ClassicModelsApp\ClassicModelsApp.csproj", "{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInformation", "CustomerInformation\CustomerInformation.csproj", "{70B54449-3158-45E0-B1B6-78FF4911C59B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicModelsLibrary", "ClassicModelsLibrary\ClassicModelsLibrary.csproj", "{1DB245B1-8BFD-467C-88E0-A644597A0CB0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Session 5", "Session 5", "{E4018A67-C94A-40A8-A1C4-A9834B070F25}"
+	ProjectSection(SolutionItems) = preProject
+		ukesoppdrag.txt = ukesoppdrag.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +50,14 @@ Global
 		{70B54449-3158-45E0-B1B6-78FF4911C59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70B54449-3158-45E0-B1B6-78FF4911C59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70B54449-3158-45E0-B1B6-78FF4911C59B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DB245B1-8BFD-467C-88E0-A644597A0CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB245B1-8BFD-467C-88E0-A644597A0CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB245B1-8BFD-467C-88E0-A644597A0CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB245B1-8BFD-467C-88E0-A644597A0CB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +66,8 @@ Global
 		{E13E764D-66EB-4543-B9C5-3B0C93AC427B} = {829CADFF-7CDC-4B8F-845F-A11BE8344D86}
 		{25B024AB-0BBF-430A-8A9B-51A8780744CC} = {5648ADC3-3ADC-4358-8E4B-8EC43EC709A2}
 		{70B54449-3158-45E0-B1B6-78FF4911C59B} = {5648ADC3-3ADC-4358-8E4B-8EC43EC709A2}
+		{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2} = {D8AC7B42-C7BB-4B5B-AFC4-3C0F848E12B9}
+		{1DB245B1-8BFD-467C-88E0-A644597A0CB0} = {D8AC7B42-C7BB-4B5B-AFC4-3C0F848E12B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBBA7EE8-7E4C-4A78-9391-BE3CE2434B49}

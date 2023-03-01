@@ -1,0 +1,22 @@
+
+
+Til neste uke:
+	Lag uttrekk fra 'world' database
+		? City.csv  (Comma Separated Values)
+		? Country.csv
+		? CountryLanguage.csv
+	Du bestemmer feltene selv men ta i hvert fall med primærnøkler og fremmednøkler!!
+	
+	Lag modellen (klassene for City, Country, CountryLanguage) som prosjekt type "Class Library"
+	Lag Console App prosjekt som bruker "class library" som inneholder filene
+	
+	Ekstra utfordring!!
+		Er det mulig å koble objektene sammen?
+
+
+Send Yngve <din>.dll ( biblotek for modeller, IKKE consoleAppend )
+
+
+select <velg felter> from city;
+select <velg felter> from country;
+select <velg felter> from countrylanguage;
