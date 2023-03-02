@@ -93,15 +93,13 @@ namespace ClassicModelsLibrary
                 // 103,HQ336336,2004-10-19,6066.78
                 if (paymentArr is [var customerIdStr , var checkNrStr , var paymentDateStr, var amountStr])
                 {
-                    int customerNr;
-                    if (!int.TryParse(customerIdStr, out customerNr))
+                    if (!int.TryParse(customerIdStr, out int customerNr))
                         Console.WriteLine("Error parsing int");
 
                     // amount -> double (6066.78 -> double)
                     // 3.14 engelsk 
                     // 3,14 norsk
-                    double amount;
-                    double.TryParse(amountStr, CultureInfo.InvariantCulture, out amount);
+                    double.TryParse(amountStr, CultureInfo.InvariantCulture, out double amount);
 
                     /*
                      * 2004-10-19
@@ -115,7 +113,7 @@ namespace ClassicModelsLibrary
 		                ss : Sekundene, representert med to sifre, for eksempel "45".
                         fff : Millisekundene, representert med tre sifre, for eksempel "789".
                      */
-                    DateTime paymentDate = DateTime.ParseExact(paymentDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    DateTime.TryParseExact(paymentDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture,DateTimeStyles.None, out DateTime paymentDate);
                     Payment payment = new()
                     {
                         Amount = amount,
