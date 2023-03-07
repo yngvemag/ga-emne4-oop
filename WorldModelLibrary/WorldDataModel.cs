@@ -48,7 +48,7 @@ namespace WorldModelLibrary
         #endregion
 
         #region Functions/Methods
-        public void LoadModels(Action<string>? log) // hvis du velger å implementere egen log funksjon kan du sende den inn som paramter
+        public bool LoadModels(Action<string>? log) // hvis du velger å implementere egen log funksjon kan du sende den inn som paramter
         {            
             if (log != null)
                 _log = log;
@@ -69,6 +69,8 @@ namespace WorldModelLibrary
             else
                 IsLoadedSucessfully = false;
             */
+
+            return IsLoadedSucessfully;
         }
 
         private ICollection<City>? LoadCities(string fileName)

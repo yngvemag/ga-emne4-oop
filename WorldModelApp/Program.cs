@@ -18,11 +18,14 @@ if (File.Exists(logFile))
 WorldDataModel worldModel = new(cityFile, countryFile, languageFile);
 
 // load models with attache logger
-worldModel.LoadModels( str => 
+var isLoaded = worldModel.LoadModels( str => 
 {
     using StreamWriter writer = new StreamWriter(logFile, true, System.Text.Encoding.UTF8);
     writer.WriteLine($"{DateTime.Now}\t {str}");
 });
+
+if (!isLoaded)
+    Console.WriteLine("Opps, sjekk logfilen for error!");
 #endregion
 
 #region Print Countries with cities and languages
