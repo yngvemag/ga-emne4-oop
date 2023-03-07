@@ -15,17 +15,14 @@ if (File.Exists(logFile))
 
 #region Create and load WorldDataModel
 
-WorldDataModel worldModel = new();
+WorldDataModel worldModel = new(cityFile, countryFile, languageFile);
 
 // load models with attache logger
-worldModel.LoadModels(cityFile, countryFile, languageFile, 
-    (str) => 
-    { 
-        using (var writer = new StreamWriter(logFile, true, System.Text.Encoding.UTF8))
-        {
-            writer.WriteLine($"{DateTime.Now.ToString()}\t {str}");
-        }
-    });
+worldModel.LoadModels( str => 
+{
+    using StreamWriter writer = new StreamWriter(logFile, true, System.Text.Encoding.UTF8);
+    writer.WriteLine($"{DateTime.Now}\t {str}");
+});
 #endregion
 
 #region Print Countries with cities and languages

@@ -9,25 +9,31 @@ namespace WorldModelLibrary
 {
     public class WorldDataModel
     {
-        private Action<string> _log = str => { };
+        private string _cityFileName;
+        private string _countryFileName;
+        private string _countryLanguageFileName;
 
+        public WorldDataModel(string cityFileName, string countryFileName, string countryLanguageFileName)
+        {
+            _cityFileName = cityFileName;
+            _countryFileName = countryFileName; 
+            _countryLanguageFileName = countryLanguageFileName;
+        }
+
+        private Action<string> _log = str => { };
         public bool IsLoadedSucessfully { get; set; }
         public List<City>? Cities { get; set; }
         public List<Country>? Countries { get; set; }
         public List<CountryLanguage>? Languages { get; set; }
                 
-        public void LoadModels(string cityFileName, 
-            string countryFileName, 
-            string countryLanguageFileName,
-            Action<string>? log) // hvis du velger å implementere egen log funksjon kan du sende den inn som paramter
-
+        public void LoadModels(Action<string>? log) // hvis du velger å implementere egen log funksjon kan du sende den inn som paramter
         {            
             if (log != null)
                 _log = log;
 
-            Cities = LoadCities(cityFileName)?.ToList();
-            Countries = LoadCountries(countryFileName)?.ToList();
-            Languages = LoadCountryLanguages(countryLanguageFileName)?.ToList();
+            Cities = LoadCities(_cityFileName)?.ToList();
+            Countries = LoadCountries(_countryFileName)?.ToList();
+            Languages = LoadCountryLanguages(_countryLanguageFileName)?.ToList();
 
             // kobler sammen modellen
             ConnectModels();
