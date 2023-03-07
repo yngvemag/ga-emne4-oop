@@ -17,7 +17,6 @@ namespace WorldModelLibrary.models
         public string CountryCode { get; set; } = string.Empty;
         public string District { get; set; } = string.Empty;
         public uint Population { get; set; }
-
         public override string ToString()
         {
             return $"Id:{Id}, Name:{Name}, CountryCode:{CountryCode}, District:{District}, Population:{Population}";

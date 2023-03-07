@@ -9,10 +9,20 @@ namespace WorldModelLibrary
 {
     public class WorldDataModel
     {
-        private string _cityFileName;
-        private string _countryFileName;
-        private string _countryLanguageFileName;
+        #region Fields
 
+        // readonly:
+        // readonly-variabel en variabel som ikke kan endres etter at den er initialisert.
+        //      * Du kan bare tilordne en verdi til en readonly-variabel i konstruktøren, eller når du erklærer variabelen.
+        //      * Du kan ikke endre verdien på en readonly-variabel senere i programmet, uansett hvor i koden det er.
+
+        private readonly string _cityFileName;
+        private readonly string _countryFileName;
+        private readonly string _countryLanguageFileName;
+
+        #endregion
+
+        #region Construktor
         public WorldDataModel(string cityFileName, string countryFileName, string countryLanguageFileName)
         {
             _cityFileName = cityFileName;
@@ -20,12 +30,24 @@ namespace WorldModelLibrary
             _countryLanguageFileName = countryLanguageFileName;
         }
 
+        #endregion
+
+        #region Delegates
+
         private Action<string> _log = str => { };
+
+        #endregion
+
+        #region Properties
+
         public bool IsLoadedSucessfully { get; set; }
         public List<City>? Cities { get; set; }
         public List<Country>? Countries { get; set; }
         public List<CountryLanguage>? Languages { get; set; }
-                
+
+        #endregion
+
+        #region Functions/Methods
         public void LoadModels(Action<string>? log) // hvis du velger å implementere egen log funksjon kan du sende den inn som paramter
         {            
             if (log != null)
@@ -170,5 +192,7 @@ namespace WorldModelLibrary
             }
 
         }
+
+        #endregion
     }
 }

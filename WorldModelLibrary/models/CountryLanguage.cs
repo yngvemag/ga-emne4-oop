@@ -15,7 +15,5 @@ namespace WorldModelLibrary.models
         public string Language { get; set; } = string.Empty;
         public bool IsOfficial { get; set; }
         public float Percentage { get; set; }
-
-
     }
 }
