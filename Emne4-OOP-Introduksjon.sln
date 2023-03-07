@@ -15,22 +15,34 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerInformation", "Cust
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{8DF4F13D-2A9D-4AFE-AEC5-E53FD771F383}"
 	ProjectSection(SolutionItems) = preProject
+		City.csv = City.csv
+		Country.csv = Country.csv
+		CountryLanguage.csv = CountryLanguage.csv
 		Customers.csv = Customers.csv
 		Employees.csv = Employees.csv
 		Payments.csv = Payments.csv
+		Log.txt = Log.txt
 		SelectData.sql = SelectData.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Session 4", "Session 4", "{D8AC7B42-C7BB-4B5B-AFC4-3C0F848E12B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicModelsApp", "ClassicModelsApp\ClassicModelsApp.csproj", "{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassicModelsApp", "ClassicModelsApp\ClassicModelsApp.csproj", "{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicModelsLibrary", "ClassicModelsLibrary\ClassicModelsLibrary.csproj", "{1DB245B1-8BFD-467C-88E0-A644597A0CB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassicModelsLibrary", "ClassicModelsLibrary\ClassicModelsLibrary.csproj", "{1DB245B1-8BFD-467C-88E0-A644597A0CB0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Session 5", "Session 5", "{E4018A67-C94A-40A8-A1C4-A9834B070F25}"
 	ProjectSection(SolutionItems) = preProject
 		ukesoppdrag.txt = ukesoppdrag.txt
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldModelLibrary", "WorldModelLibrary\WorldModelLibrary.csproj", "{3F05E64E-53FE-4551-9996-80A2FE1C6591}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GATools", "GATools\GATools.csproj", "{F531A679-9B22-487F-A1EA-34646AEBE9FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldModelApp", "WorldModelApp\WorldModelApp.csproj", "{CFFCBA33-2595-4D15-9967-D4C4E6E13E8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Løsningsforslag", "Løsningsforslag", "{45EF2506-76A7-4682-A00D-F0ADA1E97CC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +70,18 @@ Global
 		{1DB245B1-8BFD-467C-88E0-A644597A0CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DB245B1-8BFD-467C-88E0-A644597A0CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DB245B1-8BFD-467C-88E0-A644597A0CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F05E64E-53FE-4551-9996-80A2FE1C6591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F05E64E-53FE-4551-9996-80A2FE1C6591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F05E64E-53FE-4551-9996-80A2FE1C6591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F05E64E-53FE-4551-9996-80A2FE1C6591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F531A679-9B22-487F-A1EA-34646AEBE9FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F531A679-9B22-487F-A1EA-34646AEBE9FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F531A679-9B22-487F-A1EA-34646AEBE9FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F531A679-9B22-487F-A1EA-34646AEBE9FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFFCBA33-2595-4D15-9967-D4C4E6E13E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFFCBA33-2595-4D15-9967-D4C4E6E13E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFFCBA33-2595-4D15-9967-D4C4E6E13E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFFCBA33-2595-4D15-9967-D4C4E6E13E8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +92,10 @@ Global
 		{70B54449-3158-45E0-B1B6-78FF4911C59B} = {5648ADC3-3ADC-4358-8E4B-8EC43EC709A2}
 		{CA4795D4-F9D2-4568-BFB3-6C98BBC99BF2} = {D8AC7B42-C7BB-4B5B-AFC4-3C0F848E12B9}
 		{1DB245B1-8BFD-467C-88E0-A644597A0CB0} = {D8AC7B42-C7BB-4B5B-AFC4-3C0F848E12B9}
+		{3F05E64E-53FE-4551-9996-80A2FE1C6591} = {45EF2506-76A7-4682-A00D-F0ADA1E97CC2}
+		{F531A679-9B22-487F-A1EA-34646AEBE9FD} = {45EF2506-76A7-4682-A00D-F0ADA1E97CC2}
+		{CFFCBA33-2595-4D15-9967-D4C4E6E13E8D} = {45EF2506-76A7-4682-A00D-F0ADA1E97CC2}
+		{45EF2506-76A7-4682-A00D-F0ADA1E97CC2} = {E4018A67-C94A-40A8-A1C4-A9834B070F25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBBA7EE8-7E4C-4A78-9391-BE3CE2434B49}

@@ -1,4 +1,5 @@
 ﻿using ClassicModelsLibrary;
+using ClassicModelsLibrary.model;
 
 // hvordan ville dere brukt den?
 // enkel å bruke -> 
@@ -11,7 +12,6 @@ string paymentFile = "C:\\ga\\Emne 4 OOP Introduksjon\\Payments.csv";
 var customerList = ClassicModelData.GetCustomers(customerFile);
 var employeeList = ClassicModelData.GetEmployees(employeeFile);
 var paymentList = ClassicModelData.GetPayments(paymentFile);
-
 
 foreach (var c in customerList)
     Console.WriteLine(c.ToString());
