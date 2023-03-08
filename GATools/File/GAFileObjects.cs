@@ -9,7 +9,9 @@ namespace GATools.File
 {
     public static class GAFileObjects<T>
     {
-        public static ICollection<T> GetLineObjects(string fileName, Func<string, string[]> splitFunc, Func<string[], T?> parse)
+        public static ICollection<T> GetLineObjects(string fileName, 
+            Func<string, string[]> splitFunc, 
+            Func<string[], T?> parse)
         {
             var datas = new List<T>();
             using (StreamReader reader = new(fileName))

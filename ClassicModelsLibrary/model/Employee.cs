@@ -27,4 +27,8 @@ namespace ClassicModelsLibrary.model
                 $"LastName:{LastName}, Email:{Email}, JobTitle:{JobTitle}";
         }
     }
+
+    public class Employee1
+    {
+    }
 }

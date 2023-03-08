@@ -36,4 +36,8 @@ namespace ClassicModelsLibrary.model
 
         }
     }
+
+    public class Class1
+    {
+    }
 }

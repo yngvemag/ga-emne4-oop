@@ -12,6 +12,18 @@ namespace ClassicModelsLibrary.model
 {
     public class Payment
     {
+        public Payment()
+        {            
+        }
+        // Payment payment = new(amount, checkNrStr, customerNr, paymentDate);
+        public Payment(double amount, string checkNr, int customerNr, DateTime paymentDate)
+        {
+            CustomerId = customerNr;
+            Amount = amount;    
+            PaymentDate = paymentDate;
+            CheckNumber = checkNr;            
+        }
+
         public int CustomerId { get; set; }
         public string CheckNumber { get; set; } = string.Empty;
         public DateTime PaymentDate { get; set; }
