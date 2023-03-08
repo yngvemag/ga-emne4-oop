@@ -15,5 +15,10 @@ namespace WorldModelLibrary.models
         public string Language { get; set; } = string.Empty;
         public bool IsOfficial { get; set; }
         public float Percentage { get; set; }
+
+        public override string ToString()
+        {
+            return $"CountryCode: {CountryCode}, Language:{Language}, IsOfficial:{IsOfficial}, Percentage:{Percentage}";
+        }
     }
 }

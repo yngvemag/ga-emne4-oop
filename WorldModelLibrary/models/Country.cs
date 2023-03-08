@@ -51,5 +51,13 @@ namespace WorldModelLibrary.models
                 Languages.Add(language.Language, language);
         }
 
+        public override string ToString()
+        {
+            return $"Code: {Code}, Name:{Name}, Continent:{Continent}, Region:{Region}," +
+                $"SurfaceArea: {SurfaceArea}, IndepYear:{IndepYear}, Population:{Population}, LifeExpectancy:{LifeExpectancy}," +
+                $"GNP: {GNP}, GNP_Old:{GNP_Old}, LocalName:{LocalName}, GovernmentForm:{GovernmentForm}," +
+                $"HeadOfState: {HeadOfState}, Capital:{Capital}, Code2:{Code2}";
+        }
+
     }
 }
