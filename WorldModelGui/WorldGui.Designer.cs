@@ -37,36 +37,41 @@
             // 
             // treeViewWorld
             // 
-            treeViewWorld.Location = new Point(3, 38);
+            treeViewWorld.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            treeViewWorld.Location = new Point(3, 28);
+            treeViewWorld.Margin = new Padding(3, 2, 3, 2);
             treeViewWorld.Name = "treeViewWorld";
-            treeViewWorld.Size = new Size(571, 632);
+            treeViewWorld.Size = new Size(500, 482);
             treeViewWorld.TabIndex = 0;
             // 
             // txtCountryFilter
             // 
-            txtCountryFilter.Location = new Point(106, 5);
+            txtCountryFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtCountryFilter.Location = new Point(93, 4);
+            txtCountryFilter.Margin = new Padding(3, 2, 3, 2);
             txtCountryFilter.Name = "txtCountryFilter";
-            txtCountryFilter.Size = new Size(468, 27);
+            txtCountryFilter.Size = new Size(410, 23);
             txtCountryFilter.TabIndex = 2;
             txtCountryFilter.TextChanged += txtCountryFilter_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 8);
+            label1.Location = new Point(3, 6);
             label1.Name = "label1";
-            label1.Size = new Size(97, 20);
+            label1.Size = new Size(79, 15);
             label1.TabIndex = 3;
             label1.Text = "Country Filter";
             // 
             // WorldGui
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(579, 682);
+            ClientSize = new Size(507, 512);
             Controls.Add(label1);
             Controls.Add(txtCountryFilter);
             Controls.Add(treeViewWorld);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "WorldGui";
             Text = "World View";
             ResumeLayout(false);

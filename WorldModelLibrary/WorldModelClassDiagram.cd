@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="WorldModelLibrary.WorldDataModel">
+    <Position X="2.25" Y="5.75" Width="4" />
+    <AssociationLine Name="Languages" Type="WorldModelLibrary.models.CountryLanguage">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.419" Y="1.005" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EABAAAAACIAAAkIAAAAEAQAAAAAgAAAEAAAAAAAAIBA=</HashCode>
+      <FileName>WorldDataModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cities" />
+      <Property Name="Countries" />
+      <Property Name="Languages" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="WorldModelLibrary.models.City">
+    <Position X="8.75" Y="10.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACACAQAAAAAAAAAMAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\City.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldModelLibrary.models.Country">
+    <Position X="8.75" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAEABAAAiAAgAAAMAAAgAASAAAIBAAwBEAAADAAACAA=</HashCode>
+      <FileName>models\Country.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cities" />
+      <Property Name="Languages" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="WorldModelLibrary.models.CountryLanguage">
+    <Position X="8.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAACAAAAAAEAAAAAAQAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\CountryLanguage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

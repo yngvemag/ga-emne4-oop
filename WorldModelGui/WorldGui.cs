@@ -59,12 +59,14 @@ namespace WorldModelGui
                 : cty => cty.Name.ToLower().Contains(txtCityFilter.Text);*/
 
             if (_worldModel.Countries != null)
+            {
                 foreach (var cntry in _worldModel.Countries.Where(countryFilter))
                 {
                     TreeNode cntrNode = new(cntry.Name);
 
                     TreeNode citiesNode = new("Cities");
                     if (cntry.Cities != null)
+                    {
                         foreach (var cty in cntry.Cities.Values)
                         {
                             TreeNode cityNode = new(cty.Name);
@@ -74,26 +76,34 @@ namespace WorldModelGui
 
                             citiesNode.Nodes.Add(cityNode);
                         }
+                    }
                     cntrNode.Nodes.Add(citiesNode);
 
                     TreeNode languagesNode = new("Official Languages");
                     if (cntry.Languages != null)
+                    {
                         foreach (var lang in cntry.Languages.Values)
                         {
                             TreeNode langNode = new(lang.Language);
                             languagesNode.Nodes.Add(langNode);
                         }
+                    }
                     cntrNode.Nodes.Add(languagesNode);
+
+                    // add all country properties 
+                    foreach (var prop in cntry.GetType().GetProperties())
+                        cntrNode.Nodes.Add($"{prop.Name}: {prop.GetValue(cntry)}");
+
 
                     treeViewWorld.Nodes.Add(cntrNode);
                 }
+            }
         }
 
         private void txtCountryFilter_TextChanged(object sender, EventArgs e)
         {
             if (LoadData())
                 ExtractData();
-
         }
     }
 }

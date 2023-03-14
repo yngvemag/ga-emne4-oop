@@ -1,5 +1,6 @@
 ﻿using ClassicModelsLibrary;
 using ClassicModelsLibrary.model;
+using System.Reflection;
 
 // hvordan ville dere brukt den?
 // enkel å bruke -> 
@@ -8,6 +9,8 @@ using ClassicModelsLibrary.model;
 string customerFile = "C:\\ga\\Emne 4 OOP Introduksjon\\Customers.csv";
 string employeeFile = "C:\\ga\\Emne 4 OOP Introduksjon\\Employees.csv";
 string paymentFile = "C:\\ga\\Emne 4 OOP Introduksjon\\Payments.csv";
+
+
 
 var customerList = ClassicModelData.GetCustomers(customerFile);
 var employeeList = ClassicModelData.GetEmployees(employeeFile);
