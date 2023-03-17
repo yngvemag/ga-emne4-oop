@@ -52,6 +52,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldModelGui", "WorldModel
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WorldView", "Setup\WorldView\WorldView.vdproj", "{FEAD09E9-66B0-4EBC-833B-E53504244492}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawWithWinForm", "DrawWithWinForm\DrawWithWinForm.csproj", "{BA74EBF5-B0AC-4830-9B61-8394BDD7B4A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{FEAD09E9-66B0-4EBC-833B-E53504244492}.Debug|Any CPU.Build.0 = Debug
 		{FEAD09E9-66B0-4EBC-833B-E53504244492}.Release|Any CPU.ActiveCfg = Release
 		{FEAD09E9-66B0-4EBC-833B-E53504244492}.Release|Any CPU.Build.0 = Release
+		{BA74EBF5-B0AC-4830-9B61-8394BDD7B4A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA74EBF5-B0AC-4830-9B61-8394BDD7B4A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA74EBF5-B0AC-4830-9B61-8394BDD7B4A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA74EBF5-B0AC-4830-9B61-8394BDD7B4A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +119,7 @@ Global
 		{9A3AF64D-4AB7-4D4B-9984-FAB9FF26F9BA} = {6C9FB6E4-B731-478E-AE8F-FBD0BBDC3DEE}
 		{254B5455-30CB-4457-A525-8BDE294783F5} = {45EF2506-76A7-4682-A00D-F0ADA1E97CC2}
 		{FEAD09E9-66B0-4EBC-833B-E53504244492} = {45EF2506-76A7-4682-A00D-F0ADA1E97CC2}
+		{BA74EBF5-B0AC-4830-9B61-8394BDD7B4A2} = {6C9FB6E4-B731-478E-AE8F-FBD0BBDC3DEE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBBA7EE8-7E4C-4A78-9391-BE3CE2434B49}
