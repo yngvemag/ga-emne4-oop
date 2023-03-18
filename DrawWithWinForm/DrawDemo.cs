@@ -11,9 +11,9 @@ namespace DrawWithWinForm
         private int _minShapeCount = 10;
         private int _maxShapeCount = 50;
         private int _minSize = 30;
-        private int _maxSize = 100;
-        private int _maxArea = 10000;
-        private double _maxCircumference = 4 * 100;
+        private int _maxSize = 200;
+        private int _maxArea = 40000;
+        private double _maxCircumference = 4 * 200;
 
         private int _sleepTime = 25;
         private bool _isRunning = false;

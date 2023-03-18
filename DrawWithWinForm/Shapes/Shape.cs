@@ -58,7 +58,6 @@ namespace DrawWithWinForm.Shapes
             }
         }
 
-
         public abstract void Draw(Graphics g, int formWidth, int formHeight);
         public abstract double GetArea();
         public abstract double GetCircumference();
@@ -66,10 +65,10 @@ namespace DrawWithWinForm.Shapes
         public virtual void DrawAreaString(Graphics g, int formWidth, int formHeight)
         {
             g.DrawString(
-            $"A: {GetArea():0.00}",
-            new Font("Arial", 10),
-            new SolidBrush(Color.White),
-            new Point(X, Y + Height + 5));
+               $"A: {GetArea():0.00}",
+               new Font("Arial", 10),
+               new SolidBrush(Color.White),
+               new Point(X, Y - 20));
         }
 
         public virtual void DrawCirmuferenceString(Graphics g, int formWidth, int formHeight)
@@ -78,7 +77,7 @@ namespace DrawWithWinForm.Shapes
                     $"O: {GetCircumference():0.00}",
                     new Font("Arial", 10),
                     new SolidBrush(Color.White),
-                    new Point(X, Y - 20));
+                    new Point(X, Y - 40));
         }
 
         protected virtual void Move()
