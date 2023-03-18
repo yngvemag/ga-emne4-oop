@@ -191,6 +191,7 @@ namespace DrawWithWinForm
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
+            BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1054, 650);
             Controls.Add(hscrollCircumference);
             Controls.Add(hscrollArea);
@@ -198,10 +199,11 @@ namespace DrawWithWinForm
             Controls.Add(panel1);
             Controls.Add(drawPanel);
             Controls.Add(btnStartStop);
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "DrawDemo";
             ShowIcon = false;
             ShowInTaskbar = false;
-            Text = "DrawDemo";
+            Text = "Draw Shapes Demo";
             FormClosing += DrawDemo_FormClosing;
             KeyDown += DrawDemo_KeyDown;
             panel1.ResumeLayout(false);
