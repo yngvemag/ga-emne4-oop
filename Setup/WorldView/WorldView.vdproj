@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_15F01F311CAB48D58CF429C727CD78D2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D0BFE8D326CB405D9C370E5475BEDAF7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -116,6 +122,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_15F01F311CAB48D58CF429C727CD78D2"
+            {
+            "SourcePath" = "8:..\\..\\WorldModelGui\\worldgui.ico"
+            "TargetName" = "8:worldgui.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_10583B8AB29A4ADBAB1F5CD84E5FF426"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -304,7 +330,7 @@
             "Target" = "8:_D0BFE8D326CB405D9C370E5475BEDAF7"
             "Folder" = "8:_7A2556A03CE147D385AAEB416CCD90D4"
             "WorkingFolder" = "8:_10583B8AB29A4ADBAB1F5CD84E5FF426"
-            "Icon" = "8:"
+            "Icon" = "8:_15F01F311CAB48D58CF429C727CD78D2"
             "Feature" = "8:"
             }
         }

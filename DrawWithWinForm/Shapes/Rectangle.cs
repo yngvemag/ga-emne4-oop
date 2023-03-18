@@ -8,14 +8,15 @@ namespace DrawWithWinForm.Shapes
 {
     internal class Rectangle : Shape
     {
-        public override void Draw(Graphics g, Pen p, int formWidth, int formHeight)
+        public override void Draw(Graphics g, int formWidth, int formHeight)
         {
-            g.DrawRectangle(p, X, Y, Width, Height);
+            g.DrawRectangle(new Pen(base.Color), X, Y, Width , Height );
             g.FillRectangle(
-                new SolidBrush(this.Color),
-                new System.Drawing.Rectangle(X, Y, Width, Height));
+                new SolidBrush(this.FillColor),
+                new System.Drawing.Rectangle(X, Y, Width , Height));
 
-            base.Draw(g, p, formWidth, formHeight);
+            base.Move();
+            base.BounceEdges(formWidth, formHeight);
         }
       
     }

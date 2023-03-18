@@ -1,3 +1,4 @@
+using DrawWithWinForm.Controls;
 using DrawWithWinForm.Shapes;
 using System.Windows.Forms;
 
@@ -12,47 +13,70 @@ namespace DrawWithWinForm
         private int _sleepTime = 20;
         private bool _isRunning = false;
         private List<Shape> _myShapes = new List<Shape>();
-
         private Task? _drawTask = null;
 
         public DrawDemo()
         {
             InitializeComponent();
 
-            chkboxShapes.Items.Clear();
-            chkboxShapes.Items.Add("Rectangle", CheckState.Checked);
-            chkboxShapes.Items.Add("Triangle", CheckState.Checked);
-            chkboxShapes.Items.Add("Ellipse", CheckState.Checked);
-            chkboxShapes.Items.Add("Text", CheckState.Checked);
-            chkboxShapes.ItemCheck += ChkboxShapes_ItemCheck;
+            drawPanel.DoubleBuffered = true;
 
-            this.SetStyle(ControlStyles.UserPaint 
-                | ControlStyles.OptimizedDoubleBuffer 
-                | ControlStyles.AllPaintingInWmPaint 
+            chkboxRectangle.CheckedChanged += ChkboxRectangle_CheckedChanged;
+            chkboxEllipse.CheckedChanged += ChkboxEllipse_CheckedChanged;
+            chkboxText.CheckedChanged += ChkboxText_CheckedChanged;
+            chkboxTriangle.CheckedChanged += ChkboxTriangle_CheckedChanged;
+
+            this.SetStyle(ControlStyles.UserPaint
+                | ControlStyles.OptimizedDoubleBuffer
+                | ControlStyles.AllPaintingInWmPaint
                 | ControlStyles.SupportsTransparentBackColor, true);
+
+            UpdateStyles();
+
+            StartStop();
         }
 
-        private void ChkboxShapes_ItemCheck(object? sender, ItemCheckEventArgs e)
+        #region Checkbox Changed
+        private void ChkboxTriangle_CheckedChanged(object? sender, EventArgs e)
         {
             lock (_myShapes)
             {
-                var itm = chkboxShapes.GetItemCheckState(e.Index);
-                if (itm == CheckState.Checked && e.Index == 0)
-                    _myShapes.RemoveAll(shape => shape is Shapes.Rectangle);
-                else if (itm == CheckState.Unchecked && e.Index == 0)
-                    AddRectangle(_minShapeCount, _maxShapeCount);
-                else if (itm == CheckState.Checked && e.Index == 1)
+                if (!chkboxTriangle.Checked)
                     _myShapes.RemoveAll(shape => shape is Shapes.Triangle);
-                else if (itm == CheckState.Unchecked && e.Index == 1)
-                    AddTriangle(_minShapeCount, _maxShapeCount);
-                else if (itm == CheckState.Checked && e.Index == 2)
-                    _myShapes.RemoveAll(shape => shape is Shapes.Ellipse);
-                else if (itm == CheckState.Unchecked && e.Index == 2)
-                    AddEllipse(_minShapeCount, _maxShapeCount);
-                else if (itm == CheckState.Checked && e.Index == 3)
+                else AddTriangle(_minShapeCount, _maxShapeCount);
+            }
+        }
+
+        private void ChkboxText_CheckedChanged(object? sender, EventArgs e)
+        {
+            lock (_myShapes)
+            {
+                if (!chkboxText.Checked)
                     _myShapes.RemoveAll(shape => shape is Shapes.TextShape);
             }
         }
+
+        private void ChkboxEllipse_CheckedChanged(object? sender, EventArgs e)
+        {
+            lock (_myShapes)
+            {
+                if (!chkboxEllipse.Checked)
+                    _myShapes.RemoveAll(shape => shape is Shapes.Ellipse);
+                else AddEllipse(_minShapeCount, _maxShapeCount);
+            }
+        }
+
+        private void ChkboxRectangle_CheckedChanged(object? sender, EventArgs e)
+        {
+            lock (_myShapes)
+            {
+                if (!chkboxRectangle.Checked)
+                    _myShapes.RemoveAll(shape => shape is Shapes.Rectangle);
+                else AddRectangle(_minShapeCount, _maxShapeCount);
+            }
+        }
+        #endregion
+
 
         #region Add Test Shapes
         private void AddRectangle(int min, int max)
@@ -62,11 +86,12 @@ namespace DrawWithWinForm
                 {
                     Height = Random.Shared.Next(30, 100),
                     Width = Random.Shared.Next(30, 100),
-                    X = Random.Shared.Next(0, this.Width),
-                    Y = Random.Shared.Next(0, this.Height),
+                    X = Random.Shared.Next(0, (int)(this.Width * .6)),
+                    Y = Random.Shared.Next(0, (int)(this.Height * .6)),
                     XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
                     YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
-                    Color = Color.FromArgb(
+                    Color = Color.White,
+                    FillColor = Color.FromArgb(
                     Random.Shared.Next(0, 255),
                     Random.Shared.Next(0, 255),
                     Random.Shared.Next(0, 255))
@@ -80,11 +105,12 @@ namespace DrawWithWinForm
                {
                    Height = Random.Shared.Next(30, 100),
                    Width = Random.Shared.Next(30, 100),
-                   X = Random.Shared.Next(0, this.Width),
-                   Y = Random.Shared.Next(0, this.Height),
+                   X = Random.Shared.Next(0, (int)(this.Width * .6)),
+                   Y = Random.Shared.Next(0, (int)(this.Height * .6)),
                    XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
                    YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
-                   Color = Color.FromArgb(
+                   Color = Color.White,
+                   FillColor = Color.FromArgb(
                    Random.Shared.Next(0, 255),
                    Random.Shared.Next(0, 255),
                    Random.Shared.Next(0, 255))
@@ -97,11 +123,12 @@ namespace DrawWithWinForm
                {
                    Height = Random.Shared.Next(30, 100),
                    Width = Random.Shared.Next(30, 100),
-                   X = Random.Shared.Next(0, this.Width),
-                   Y = Random.Shared.Next(0, this.Height),
+                   X = Random.Shared.Next(0, (int)(this.Width * .6)),
+                   Y = Random.Shared.Next(0, (int)(this.Height * .6)),
                    XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
                    YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
-                   Color = Color.FromArgb(
+                   Color = Color.White,
+                   FillColor = Color.FromArgb(
                    Random.Shared.Next(0, 255),
                    Random.Shared.Next(0, 255),
                    Random.Shared.Next(0, 255))
@@ -111,9 +138,6 @@ namespace DrawWithWinForm
         #endregion
         private void Draw()
         {
-            Brush myDrawingBrush = new SolidBrush(Color.Cyan);
-            Pen pen = new Pen(myDrawingBrush);
-
             //start an async task
             _drawTask = Task.Factory.StartNew(() =>
             {
@@ -127,13 +151,14 @@ namespace DrawWithWinForm
                         using (Graphics g = Graphics.FromImage(buffer))
                         {
                             lock (_myShapes)
-                                _myShapes.ForEach(shape => shape.Draw(g, pen, this.Width, this.Height));
+                                _myShapes.ForEach(shape => shape.Draw(g, drawPanel.Width, drawPanel.Height));
                         }
 
                         //invoke an action against the main thread to draw the buffer to the background image of the main form.
                         this.Invoke(new Action(() =>
                         {
-                            this.BackgroundImage = buffer;
+                            drawPanel.BackgroundImage = buffer;
+                            //this.BackgroundImage = buffer;
                         }));
                     }
                     catch (Exception ex) { return; }
@@ -157,13 +182,13 @@ namespace DrawWithWinForm
             {
                 _myShapes.Clear();
                 btnStartStop.Text = "Stop";
-                if (chkboxShapes.GetItemCheckState(0) == CheckState.Checked)
+                if (chkboxRectangle.Checked)
                     AddRectangle(_minShapeCount, _maxShapeCount);
 
-                if (chkboxShapes.GetItemCheckState(1) == CheckState.Checked)
+                if (chkboxTriangle.Checked)
                     AddTriangle(_minShapeCount, _maxShapeCount);
 
-                if (chkboxShapes.GetItemCheckState(2) == CheckState.Checked)
+                if (chkboxEllipse.Checked)
                     AddEllipse(_minShapeCount, _maxShapeCount);
 
                 Draw();
@@ -182,56 +207,41 @@ namespace DrawWithWinForm
 
         }
 
-        private void DrawDemo_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _isRunning = false;
-            Thread.Sleep(100);
-        }
-
         private void btnStartStop_Click(object sender, EventArgs e)
         {
             StartStop();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            _isRunning = false;
-            _myShapes.Clear();
-            this.Close();
-        }
-
-        private void btnAddText_Click(object sender, EventArgs e)
-        {
-            AddTekst();
         }
 
         private void AddTekst()
         {
             if (txtAdd.Text.Length > 0)
             {
+
+                lock (_myShapes)
+                {
+                    _myShapes.Add(new Shapes.TextShape()
+                    {
+                        Height = Random.Shared.Next(16, 64),
+                        Width = Random.Shared.Next(30, 100),
+                        X = Random.Shared.Next(0, (int)(this.Width * .6)),
+                        Y = Random.Shared.Next(0, (int)(this.Height * .6)),
+                        XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
+                        YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
+                        Color = Color.FromArgb(
+                              Random.Shared.Next(100, 255),
+                              Random.Shared.Next(100, 255),
+                              Random.Shared.Next(100, 255)),
+                        Text = txtAdd.Text
+                    });
+                }
+                /*
                 txtAdd.Text.Split().ToList()
                     .ForEach(s =>
                     {
-                        lock (_myShapes)
-                        {
-                            _myShapes.Add(new Shapes.TextShape()
-                            {
-                                Height = Random.Shared.Next(16, 64),
-                                Width = Random.Shared.Next(30, 100),
-                                X = Random.Shared.Next(0, this.Width),
-                                Y = Random.Shared.Next(0, this.Height),
-                                XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
-                                YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
-                                Color = Color.FromArgb(
-                              Random.Shared.Next(0, 255),
-                              Random.Shared.Next(0, 255),
-                              Random.Shared.Next(0, 255)),
-                                Text = s
-                            });
-                        }
+                        
 
                     });
-
+                */
                 txtAdd.Text = string.Empty;
             }
         }
@@ -242,7 +252,11 @@ namespace DrawWithWinForm
             {
                 AddTekst();
             }
-
+        }
+        private void DrawDemo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _isRunning = false;
+            Thread.Sleep(100);
         }
     }
 }

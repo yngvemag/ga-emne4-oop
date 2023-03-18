@@ -19,19 +19,18 @@ namespace DrawWithWinForm.Shapes
 
         public Color Color { get; set; }
 
+        public Color FillColor { get; set; }
 
-        public virtual void Draw(Graphics g, Pen p, int formWidth, int formHeight)
-        {
-            Move();
-            CheckEdges(formWidth, formHeight);
-        }
-        protected void Move()
+
+        public abstract void Draw(Graphics g, int formWidth, int formHeight);
+
+        protected virtual void Move()
         {
             X += XSpeed;
             Y += YSpeed;
         }
 
-        protected void CheckEdges(int formWidth, int formHeight)
+        protected virtual void BounceEdges(int formWidth, int formHeight)
         {
             if (X + Width > formWidth || X < 0)
                 XSpeed *= -1;

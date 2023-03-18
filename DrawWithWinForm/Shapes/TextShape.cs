@@ -10,12 +10,13 @@ namespace DrawWithWinForm.Shapes
     {
         public string Text { get; set; } = string.Empty;
 
-        public override void Draw(Graphics g, Pen p, int formWidth, int formHeight)
+        public override void Draw(Graphics g, int formWidth, int formHeight)
         {
-            g.DrawString(Text, new Font("Arial", Height), new SolidBrush(Color), new Point(X, Y));
+            g.DrawString(Text, new Font("Arial", Height), 
+                new SolidBrush(Color), new Point(X, Y));
 
             Move();
-            CheckEdges(formWidth, formHeight);
+            BounceEdges(formWidth, formHeight);
         }
     }
 }

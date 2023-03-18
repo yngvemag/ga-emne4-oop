@@ -8,12 +8,14 @@ namespace DrawWithWinForm.Shapes
 {
     internal class Ellipse : Shape
     {
-        public override void Draw(Graphics g, Pen p, int formWidth, int formHeight)
+        public override void Draw(Graphics g, int formWidth, int formHeight)
         {
-            g.FillEllipse(new SolidBrush(Color), new System.Drawing.Rectangle(X, Y, Width, Height));
-            Move();
+            g.FillEllipse(new SolidBrush(FillColor), 
+                new System.Drawing.Rectangle(X, Y, Width, Height));
+            
+            base.Move();
+            base.BounceEdges(formWidth, formHeight);
 
-            base.Draw(g, p, formWidth, formHeight);
         }
     }
 }
