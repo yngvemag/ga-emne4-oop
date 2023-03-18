@@ -23,6 +23,26 @@ namespace DrawWithWinForm.Shapes
 
 
         public abstract void Draw(Graphics g, int formWidth, int formHeight);
+        public abstract double GetArea();
+        public abstract double GetCircumference();
+
+        public virtual void DrawAreaString(Graphics g, int formWidth, int formHeight)
+        {
+            g.DrawString(
+            $"A: {GetArea():0.00}",
+            new Font("Arial", 10),
+            new SolidBrush(Color.White),
+            new Point(X, Y + Height + 5));
+        }
+
+        public virtual void DrawCirmuferenceString(Graphics g, int formWidth, int formHeight)
+        {
+            g.DrawString(
+                    $"O: {GetCircumference():0.00}",
+                    new Font("Arial", 10),
+                    new SolidBrush(Color.White),
+                    new Point(X, Y - 20));
+        }
 
         protected virtual void Move()
         {

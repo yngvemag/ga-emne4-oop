@@ -7,10 +7,15 @@ namespace DrawWithWinForm
     public partial class DrawDemo : Form
     {
         private readonly int _maxSpeed = 5;
-        private readonly int _minSpeed = -3;
-        private int _minShapeCount = 3;
-        private int _maxShapeCount = 20;
-        private int _sleepTime = 20;
+        private readonly int _minSpeed = -5;
+        private int _minShapeCount = 10;
+        private int _maxShapeCount = 50;
+        private int _minSize = 30;
+        private int _maxSize = 100;
+        private int _maxArea = 10000;
+        private double _maxCircumference = 4 * 100;
+
+        private int _sleepTime = 25;
         private bool _isRunning = false;
         private List<Shape> _myShapes = new List<Shape>();
         private Task? _drawTask = null;
@@ -26,6 +31,17 @@ namespace DrawWithWinForm
             chkboxText.CheckedChanged += ChkboxText_CheckedChanged;
             chkboxTriangle.CheckedChanged += ChkboxTriangle_CheckedChanged;
 
+            hscrollCircumference.Maximum = (int)_maxCircumference;
+            hscrollCircumference.Value = (int)_maxCircumference;
+
+            hscrollArea.Maximum = _maxArea;
+            hscrollArea.Value = _maxArea;
+
+            chkboxShowCircumference.Text = $"Show Circumference ({hscrollCircumference.Value})";
+            chkboxShowArea.Text = $"Show Area ({hscrollArea.Value})";
+
+            hscrollArea.ValueChanged += HscrollArea_ValueChanged;
+            hscrollCircumference.ValueChanged += HscrollCircumference_ValueChanged;
             this.SetStyle(ControlStyles.UserPaint
                 | ControlStyles.OptimizedDoubleBuffer
                 | ControlStyles.AllPaintingInWmPaint
@@ -34,6 +50,16 @@ namespace DrawWithWinForm
             UpdateStyles();
 
             StartStop();
+        }
+
+        private void HscrollCircumference_ValueChanged(object? sender, EventArgs e)
+        {
+            chkboxShowCircumference.Text = $"Show Circumference ({hscrollCircumference.Value})";
+        }
+
+        private void HscrollArea_ValueChanged(object? sender, EventArgs e)
+        {
+            chkboxShowArea.Text = $"Show Area ({hscrollArea.Value})";
         }
 
         #region Checkbox Changed
@@ -61,7 +87,7 @@ namespace DrawWithWinForm
             lock (_myShapes)
             {
                 if (!chkboxEllipse.Checked)
-                    _myShapes.RemoveAll(shape => shape is Shapes.Ellipse);
+                    _myShapes.RemoveAll(shape => shape is Shapes.Circle);
                 else AddEllipse(_minShapeCount, _maxShapeCount);
             }
         }
@@ -84,9 +110,9 @@ namespace DrawWithWinForm
             Enumerable.Range(min, max).ToList()
                 .ForEach(x => _myShapes.Add(new Shapes.Rectangle()
                 {
-                    Height = Random.Shared.Next(30, 100),
-                    Width = Random.Shared.Next(30, 100),
-                    X = Random.Shared.Next(0, (int)(this.Width * .6)),
+                    Height = Random.Shared.Next(_minSize, _maxSize),
+                    Width = Random.Shared.Next(_minSize, _maxSize),
+                    X = Random.Shared.Next(0, (int)(this.Width * .8)),
                     Y = Random.Shared.Next(0, (int)(this.Height * .6)),
                     XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
                     YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
@@ -103,9 +129,9 @@ namespace DrawWithWinForm
             Enumerable.Range(min, max).ToList()
                .ForEach(x => _myShapes.Add(new Shapes.Triangle()
                {
-                   Height = Random.Shared.Next(30, 100),
-                   Width = Random.Shared.Next(30, 100),
-                   X = Random.Shared.Next(0, (int)(this.Width * .6)),
+                   Height = Random.Shared.Next(_minSize, (int)(_maxSize * 1.3)),
+                   Width = Random.Shared.Next(_minSize, (int)(_maxSize * 1.3)),
+                   X = Random.Shared.Next(0, (int)(this.Width * .8)),
                    Y = Random.Shared.Next(0, (int)(this.Height * .6)),
                    XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
                    YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
@@ -119,11 +145,11 @@ namespace DrawWithWinForm
         private void AddEllipse(int min, int max)
         {
             Enumerable.Range(min, max).ToList()
-               .ForEach(x => _myShapes.Add(new Shapes.Ellipse()
+               .ForEach(x => _myShapes.Add(new Shapes.Circle()
                {
-                   Height = Random.Shared.Next(30, 100),
-                   Width = Random.Shared.Next(30, 100),
-                   X = Random.Shared.Next(0, (int)(this.Width * .6)),
+                   Height = Random.Shared.Next(_minSize, _maxSize),
+                   Width = Random.Shared.Next(_minSize, _maxSize),
+                   X = Random.Shared.Next(0, (int)(this.Width * .8)),
                    Y = Random.Shared.Next(0, (int)(this.Height * .6)),
                    XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
                    YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
@@ -147,11 +173,22 @@ namespace DrawWithWinForm
                     {
                         Bitmap buffer = new Bitmap(this.Width, this.Height);
                         Thread.Sleep(_sleepTime);
-
                         using (Graphics g = Graphics.FromImage(buffer))
                         {
                             lock (_myShapes)
-                                _myShapes.ForEach(shape => shape.Draw(g, drawPanel.Width, drawPanel.Height));
+                            {
+                                _myShapes
+                                .Where(s => s.GetArea() < hscrollArea.Value && s.GetCircumference() < hscrollCircumference.Value).ToList()
+                                .ForEach(shape =>
+                                {
+                                    shape.Draw(g, drawPanel.Width, drawPanel.Height);
+                                    if (chkboxShowArea.Checked)
+                                        shape.DrawAreaString(g, drawPanel.Width, drawPanel.Height);
+                                    if (chkboxShowCircumference.Checked)
+                                        shape.DrawCirmuferenceString(g, drawPanel.Width, drawPanel.Height);
+
+                                });
+                            }
                         }
 
                         //invoke an action against the main thread to draw the buffer to the background image of the main form.
@@ -248,7 +285,7 @@ namespace DrawWithWinForm
 
         private void txtAdd_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && chkboxText.Checked)
             {
                 AddTekst();
             }
