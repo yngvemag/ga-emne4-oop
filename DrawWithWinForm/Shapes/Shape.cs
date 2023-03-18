@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace DrawWithWinForm.Shapes
 {
@@ -20,6 +21,42 @@ namespace DrawWithWinForm.Shapes
         public Color Color { get; set; }
 
         public Color FillColor { get; set; }
+
+        public bool IsCollion { get; set; }
+
+        public Point CenterPos 
+        {
+            get 
+            {
+                var x = X + (Width / 2);
+                var y = Y + (Height / 2);
+                return new Point(x, y);
+            }  
+        }
+
+        public static double Distance(Shape a, Shape b)
+        {
+            int xdiff = b.CenterPos.X - a.CenterPos.X;
+            int ydiff = b.CenterPos.Y - a.CenterPos.Y;
+
+            return Math.Sqrt(xdiff ^ 2 + ydiff ^ 2);
+        }
+
+        public static void CollisionTest(Shape a, Shape b)
+        {
+            if (a.X == b.X && a.Y == b.Y)
+                return;
+
+            var xDist = Math.Abs(a.CenterPos.X - b.CenterPos.X);
+            var yDist = Math.Abs(b.CenterPos.Y - a.CenterPos.Y);
+
+            if (xDist <= ( a.Width/2 + b.Width/2) &&
+                yDist <= (a.Height/2 +b.Height/2))
+            {   
+                a.IsCollion = true;
+                b.IsCollion = true;
+            }
+        }
 
 
         public abstract void Draw(Graphics g, int formWidth, int formHeight);

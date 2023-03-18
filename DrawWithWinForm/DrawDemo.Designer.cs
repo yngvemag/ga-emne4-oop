@@ -42,6 +42,7 @@ namespace DrawWithWinForm
             chkboxEllipse = new CheckBox();
             hscrollArea = new HScrollBar();
             hscrollCircumference = new HScrollBar();
+            chkboxCollision = new CheckBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -107,6 +108,7 @@ namespace DrawWithWinForm
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(255, 128, 0);
+            panel1.Controls.Add(chkboxCollision);
             panel1.Controls.Add(chkboxShowCircumference);
             panel1.Controls.Add(chkboxShowArea);
             panel1.Controls.Add(chkboxText);
@@ -186,6 +188,18 @@ namespace DrawWithWinForm
             hscrollCircumference.Size = new Size(245, 43);
             hscrollCircumference.TabIndex = 10;
             // 
+            // chkboxCollision
+            // 
+            chkboxCollision.AutoSize = true;
+            chkboxCollision.BackColor = Color.FromArgb(255, 128, 0);
+            chkboxCollision.ForeColor = Color.Black;
+            chkboxCollision.Location = new Point(428, 9);
+            chkboxCollision.Name = "chkboxCollision";
+            chkboxCollision.Size = new Size(88, 24);
+            chkboxCollision.TabIndex = 11;
+            chkboxCollision.Text = "Collision";
+            chkboxCollision.UseVisualStyleBackColor = false;
+            // 
             // DrawDemo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -226,5 +240,6 @@ namespace DrawWithWinForm
         private CheckBox chkboxShowArea;
         private HScrollBar hscrollArea;
         private HScrollBar hscrollCircumference;
+        private CheckBox chkboxCollision;
     }
 }

@@ -177,8 +177,9 @@ namespace DrawWithWinForm
                         {
                             lock (_myShapes)
                             {
-                                _myShapes
-                                .Where(s => s.GetArea() < hscrollArea.Value && s.GetCircumference() < hscrollCircumference.Value).ToList()
+                                var shapesToDraw = _myShapes.Where(s => s.GetArea() < hscrollArea.Value && s.GetCircumference() < hscrollCircumference.Value);
+
+                                shapesToDraw.ToList()
                                 .ForEach(shape =>
                                 {
                                     shape.Draw(g, drawPanel.Width, drawPanel.Height);
@@ -187,7 +188,17 @@ namespace DrawWithWinForm
                                     if (chkboxShowCircumference.Checked)
                                         shape.DrawCirmuferenceString(g, drawPanel.Width, drawPanel.Height);
 
+                                    // Check for collision
+                                    if (chkboxCollision.Checked)
+                                    {
+                                        foreach (var a in shapesToDraw)
+                                            Shape.CollisionTest(shape, a);
+                                    }
+                                    _myShapes.RemoveAll(s => s.IsCollion);
+
                                 });
+
+                                
                             }
                         }
 
