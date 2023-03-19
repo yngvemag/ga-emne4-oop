@@ -55,8 +55,7 @@ namespace DrawWithWinForm
             StartStop();
         }
 
-
-
+        #region Scrollbars ValueChanged
         private void HscrollCircumference_ValueChanged(object? sender, EventArgs e)
         {
             chkboxShowCircumference.Text = $"Show Circumference ({hscrollCircumference.Value})";
@@ -66,6 +65,7 @@ namespace DrawWithWinForm
         {
             chkboxShowArea.Text = $"Show Area ({hscrollArea.Value})";
         }
+        #endregion
 
         #region Checkbox Changed
 
@@ -127,8 +127,7 @@ namespace DrawWithWinForm
         }
         #endregion
 
-
-        #region Add Test Shapes
+        #region Add Shapes to DrawList
         private void AddRectangle(int min, int max)
         {
             Enumerable.Range(min, max).ToList()
@@ -208,7 +207,7 @@ namespace DrawWithWinForm
         {
             Enumerable.Range(min, max).ToList()
                 .ForEach(x => _myShapes.Add(new Polygon(
-                        Random.Shared.Next(5, 50),
+                        Random.Shared.Next(10, 40),
                         Random.Shared.Next(3, 12))
                 {
                     X = Random.Shared.Next(0, (int)(this.Width * .8)),
@@ -279,22 +278,37 @@ namespace DrawWithWinForm
                 }
             });
         }
-
-        private void DrawDemo_KeyDown(object sender, KeyEventArgs e)
+        private void AddTekst()
         {
-            if (e.KeyCode.Equals(Keys.Space))
+            if (txtAdd.Text.Length > 0)
             {
-                StartStop();
-            }
-            else if (e.KeyCode.Equals(Keys.Enter))
-            {
-                _myShapes.Where(x => x is Polygon).ToList()
-                    .ForEach(shape =>
+
+                lock (_myShapes)
+                {
+                    _myShapes.Add(new Shapes.TextShape()
                     {
-                        var pol = shape as Polygon;
-                        if (pol != null)
-                            pol.IsDrawingNumbers = !pol.IsDrawingNumbers;
+                        Height = Random.Shared.Next(16, 64),
+                        Width = Random.Shared.Next(30, 100),
+                        X = Random.Shared.Next(0, (int)(this.Width * .6)),
+                        Y = Random.Shared.Next(0, (int)(this.Height * .6)),
+                        XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
+                        YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
+                        Color = Color.FromArgb(
+                              Random.Shared.Next(100, 255),
+                              Random.Shared.Next(100, 255),
+                              Random.Shared.Next(100, 255)),
+                        Text = txtAdd.Text
                     });
+                }
+                /*
+                txtAdd.Text.Split().ToList()
+                    .ForEach(s =>
+                    {
+                        
+
+                    });
+                */
+                txtAdd.Text = string.Empty;
             }
         }
         private void StartStop()
@@ -330,44 +344,41 @@ namespace DrawWithWinForm
 
         }
 
+        #region Windows Events => Set "KeyPreview = True"
+        private void DrawDemo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Space))
+            {
+                StartStop();
+            }
+            else if (e.KeyCode.Equals(Keys.N))
+            {
+                _myShapes.Where(x => x is Polygon).ToList()
+                    .ForEach(shape =>
+                    {
+                        var pol = shape as Polygon;
+                        if (pol != null)
+                            pol.IsDrawingNumbers = !pol.IsDrawingNumbers;
+                    });
+            }
+            else if (e.KeyCode.Equals(Keys.V))
+            {
+                _myShapes.Where(x => x is Polygon).ToList()
+                    .ForEach(shape =>
+                    {
+                        var pol = shape as Polygon;
+                        if (pol != null)
+                            pol.isDrawingVectors = !pol.isDrawingVectors;
+                    });
+            }
+        }
+        
+
         private void btnStartStop_Click(object sender, EventArgs e)
         {
             StartStop();
         }
-
-        private void AddTekst()
-        {
-            if (txtAdd.Text.Length > 0)
-            {
-
-                lock (_myShapes)
-                {
-                    _myShapes.Add(new Shapes.TextShape()
-                    {
-                        Height = Random.Shared.Next(16, 64),
-                        Width = Random.Shared.Next(30, 100),
-                        X = Random.Shared.Next(0, (int)(this.Width * .6)),
-                        Y = Random.Shared.Next(0, (int)(this.Height * .6)),
-                        XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
-                        YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
-                        Color = Color.FromArgb(
-                              Random.Shared.Next(100, 255),
-                              Random.Shared.Next(100, 255),
-                              Random.Shared.Next(100, 255)),
-                        Text = txtAdd.Text
-                    });
-                }
-                /*
-                txtAdd.Text.Split().ToList()
-                    .ForEach(s =>
-                    {
-                        
-
-                    });
-                */
-                txtAdd.Text = string.Empty;
-            }
-        }
+               
 
         private void txtAdd_KeyDown(object sender, KeyEventArgs e)
         {
@@ -382,5 +393,6 @@ namespace DrawWithWinForm
             Thread.Sleep(100);
         }
 
+        #endregion
     }
 }

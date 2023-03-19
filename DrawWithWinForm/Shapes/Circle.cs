@@ -8,10 +8,7 @@ namespace DrawWithWinForm.Shapes
 {
     internal class Circle : Shape
     {
-        public double Radius 
-        {
-            get => Diameter / 2;            
-        }
+        public double Radius {  get => Diameter / 2;  }
         public int Diameter
         {
             get => Width;
@@ -21,7 +18,6 @@ namespace DrawWithWinForm.Shapes
                 Height = value;
             }
         }
-
         public override double GetArea() => Math.PI * Math.Pow(Radius, 2);
         public override double GetCircumference() => Math.PI * Diameter;
 
@@ -31,7 +27,6 @@ namespace DrawWithWinForm.Shapes
                 new System.Drawing.Rectangle(X, Y, Diameter, Diameter));
             base.Move();
             base.BounceEdges(formWidth, formHeight);
-
         }
     }
 }

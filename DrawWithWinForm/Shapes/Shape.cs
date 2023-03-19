@@ -62,6 +62,8 @@ namespace DrawWithWinForm.Shapes
         public abstract double GetArea();
         public abstract double GetCircumference();
 
+        
+
         public virtual void DrawAreaString(Graphics g, int formWidth, int formHeight)
         {
             g.DrawString(

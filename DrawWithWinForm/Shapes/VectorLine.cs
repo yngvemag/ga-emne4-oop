@@ -41,26 +41,25 @@ namespace DrawWithWinForm.Shapes
                 angle += angleIncrese;
             }
         }
-
         public double InitialDirectionInDegree { get; set; }
 
         public int RotateSpeed { get; set; }
-
         protected virtual void RotateVectors()
         {
             InitialDirectionInDegree += RotateSpeed;
             InitVectors();
         }
-
         protected virtual void DrawVectors(Graphics g, int formWidth, int formHeight)
-        {
-            Point pStart = new(X, Y);
-            Pen p = new(Color);
+        {   
             if (_vectors != null)
             {
+                int x = (int)_vectors.Average(x => x.XLength) - 10 + X;
+                int y = (int)_vectors.Average(x => x.YLength) - 10 + Y;
+                Point pStart = new(x, y);
+                Pen p = new(Color);
                 foreach (var vector in _vectors)
-                {
-                    Point pStop = new Point(X + (int)vector.XLength, Y + (int)vector.YLength);
+                {                    
+                    Point pStop = new Point(x + (int)vector.XLength, y + (int)vector.YLength);
                     g.DrawLine(p, pStart, pStop);
                 }
             }
@@ -73,7 +72,6 @@ namespace DrawWithWinForm.Shapes
             Move();
             BounceEdges(formWidth, formHeight);
         }
-
         public override double GetArea() => 0;
         public override double GetCircumference() => 0;
        

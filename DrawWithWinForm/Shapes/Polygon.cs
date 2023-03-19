@@ -1,6 +1,7 @@
 ﻿using Accessibility;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,6 @@ namespace DrawWithWinForm.Shapes
             : base(length, count)
         {
             _points = new Point[_vectorCount];
-            IsDrawingNumbers = false;
         }
 
         protected void InitPoints()
@@ -38,7 +38,7 @@ namespace DrawWithWinForm.Shapes
         }
 
         public bool IsDrawingNumbers { get; set; }
-
+        public bool isDrawingVectors { get; set; }
         protected void DrawPolygon(Graphics g, int formWidth, int formHeight)
         {
             Pen p = new Pen(Color);
@@ -54,7 +54,6 @@ namespace DrawWithWinForm.Shapes
                 g.FillPolygon(new SolidBrush(this.FillColor), _points);
             }
         }
-
         protected void DrawNumberString(Graphics g, int formWidth, int formHeight)
         {
             if (_points != null)
@@ -70,7 +69,8 @@ namespace DrawWithWinForm.Shapes
             InitPoints();
             DrawPolygon(g, formWidth, formHeight);            
             
-            //DrawVectors(g, formWidth, formHeight); 
+            if (isDrawingVectors)
+                DrawVectors(g, formWidth, formHeight); 
             if (IsDrawingNumbers)
                 DrawNumberString(g, formWidth, formHeight); 
 
