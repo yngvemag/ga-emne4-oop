@@ -36,13 +36,15 @@ namespace DrawWithWinForm
             chkboxRectangle = new CheckBox();
             chkboxTriangle = new CheckBox();
             panel1 = new Panel();
+            chkboxPolygon = new CheckBox();
+            chkboxVector = new CheckBox();
+            chkboxCollision = new CheckBox();
             chkboxShowCircumference = new CheckBox();
             chkboxShowArea = new CheckBox();
             chkboxText = new CheckBox();
             chkboxEllipse = new CheckBox();
             hscrollArea = new HScrollBar();
             hscrollCircumference = new HScrollBar();
-            chkboxCollision = new CheckBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -66,7 +68,7 @@ namespace DrawWithWinForm
             txtAdd.ForeColor = Color.Black;
             txtAdd.Location = new Point(3, 51);
             txtAdd.Name = "txtAdd";
-            txtAdd.Size = new Size(529, 43);
+            txtAdd.Size = new Size(752, 43);
             txtAdd.TabIndex = 4;
             txtAdd.KeyDown += txtAdd_KeyDown;
             // 
@@ -77,7 +79,7 @@ namespace DrawWithWinForm
             drawPanel.DoubleBuffered = false;
             drawPanel.Location = new Point(3, 97);
             drawPanel.Name = "drawPanel";
-            drawPanel.Size = new Size(1047, 550);
+            drawPanel.Size = new Size(1270, 550);
             drawPanel.TabIndex = 5;
             // 
             // chkboxRectangle
@@ -108,6 +110,8 @@ namespace DrawWithWinForm
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(255, 128, 0);
+            panel1.Controls.Add(chkboxPolygon);
+            panel1.Controls.Add(chkboxVector);
             panel1.Controls.Add(chkboxCollision);
             panel1.Controls.Add(chkboxShowCircumference);
             panel1.Controls.Add(chkboxShowArea);
@@ -117,8 +121,44 @@ namespace DrawWithWinForm
             panel1.Controls.Add(chkboxTriangle);
             panel1.Location = new Point(109, 7);
             panel1.Name = "panel1";
-            panel1.Size = new Size(941, 41);
+            panel1.Size = new Size(1164, 41);
             panel1.TabIndex = 8;
+            // 
+            // chkboxPolygon
+            // 
+            chkboxPolygon.AutoSize = true;
+            chkboxPolygon.BackColor = Color.FromArgb(255, 128, 0);
+            chkboxPolygon.ForeColor = Color.Black;
+            chkboxPolygon.Location = new Point(402, 9);
+            chkboxPolygon.Name = "chkboxPolygon";
+            chkboxPolygon.Size = new Size(90, 24);
+            chkboxPolygon.TabIndex = 13;
+            chkboxPolygon.Text = "Polygons";
+            chkboxPolygon.UseVisualStyleBackColor = false;
+            // 
+            // chkboxVector
+            // 
+            chkboxVector.AutoSize = true;
+            chkboxVector.BackColor = Color.FromArgb(255, 128, 0);
+            chkboxVector.ForeColor = Color.Black;
+            chkboxVector.Location = new Point(290, 9);
+            chkboxVector.Name = "chkboxVector";
+            chkboxVector.Size = new Size(106, 24);
+            chkboxVector.TabIndex = 12;
+            chkboxVector.Text = "VectorLines";
+            chkboxVector.UseVisualStyleBackColor = false;
+            // 
+            // chkboxCollision
+            // 
+            chkboxCollision.AutoSize = true;
+            chkboxCollision.BackColor = Color.FromArgb(255, 128, 0);
+            chkboxCollision.ForeColor = Color.Black;
+            chkboxCollision.Location = new Point(609, 9);
+            chkboxCollision.Name = "chkboxCollision";
+            chkboxCollision.Size = new Size(88, 24);
+            chkboxCollision.TabIndex = 11;
+            chkboxCollision.Text = "Collision";
+            chkboxCollision.UseVisualStyleBackColor = false;
             // 
             // chkboxShowCircumference
             // 
@@ -126,7 +166,7 @@ namespace DrawWithWinForm
             chkboxShowCircumference.AutoSize = true;
             chkboxShowCircumference.BackColor = Color.FromArgb(255, 128, 0);
             chkboxShowCircumference.ForeColor = Color.Black;
-            chkboxShowCircumference.Location = new Point(767, 9);
+            chkboxShowCircumference.Location = new Point(990, 9);
             chkboxShowCircumference.Name = "chkboxShowCircumference";
             chkboxShowCircumference.RightToLeft = RightToLeft.Yes;
             chkboxShowCircumference.Size = new Size(166, 24);
@@ -140,7 +180,7 @@ namespace DrawWithWinForm
             chkboxShowArea.AutoSize = true;
             chkboxShowArea.BackColor = Color.FromArgb(255, 128, 0);
             chkboxShowArea.ForeColor = Color.Black;
-            chkboxShowArea.Location = new Point(586, 9);
+            chkboxShowArea.Location = new Point(809, 9);
             chkboxShowArea.Name = "chkboxShowArea";
             chkboxShowArea.RightToLeft = RightToLeft.Yes;
             chkboxShowArea.Size = new Size(102, 24);
@@ -153,7 +193,7 @@ namespace DrawWithWinForm
             chkboxText.AutoSize = true;
             chkboxText.BackColor = Color.FromArgb(255, 128, 0);
             chkboxText.ForeColor = Color.Black;
-            chkboxText.Location = new Point(297, 9);
+            chkboxText.Location = new Point(507, 9);
             chkboxText.Name = "chkboxText";
             chkboxText.Size = new Size(58, 24);
             chkboxText.TabIndex = 9;
@@ -175,7 +215,7 @@ namespace DrawWithWinForm
             // hscrollArea
             // 
             hscrollArea.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            hscrollArea.Location = new Point(537, 51);
+            hscrollArea.Location = new Point(760, 51);
             hscrollArea.Name = "hscrollArea";
             hscrollArea.Size = new Size(260, 43);
             hscrollArea.TabIndex = 9;
@@ -183,22 +223,10 @@ namespace DrawWithWinForm
             // hscrollCircumference
             // 
             hscrollCircumference.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            hscrollCircumference.Location = new Point(804, 51);
+            hscrollCircumference.Location = new Point(1027, 51);
             hscrollCircumference.Name = "hscrollCircumference";
             hscrollCircumference.Size = new Size(245, 43);
             hscrollCircumference.TabIndex = 10;
-            // 
-            // chkboxCollision
-            // 
-            chkboxCollision.AutoSize = true;
-            chkboxCollision.BackColor = Color.FromArgb(255, 128, 0);
-            chkboxCollision.ForeColor = Color.Black;
-            chkboxCollision.Location = new Point(428, 9);
-            chkboxCollision.Name = "chkboxCollision";
-            chkboxCollision.Size = new Size(88, 24);
-            chkboxCollision.TabIndex = 11;
-            chkboxCollision.Text = "Collision";
-            chkboxCollision.UseVisualStyleBackColor = false;
             // 
             // DrawDemo
             // 
@@ -206,7 +234,7 @@ namespace DrawWithWinForm
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(1054, 650);
+            ClientSize = new Size(1277, 650);
             Controls.Add(hscrollCircumference);
             Controls.Add(hscrollArea);
             Controls.Add(txtAdd);
@@ -214,6 +242,7 @@ namespace DrawWithWinForm
             Controls.Add(drawPanel);
             Controls.Add(btnStartStop);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            KeyPreview = true;
             Name = "DrawDemo";
             ShowIcon = false;
             ShowInTaskbar = false;
@@ -241,5 +270,7 @@ namespace DrawWithWinForm
         private HScrollBar hscrollArea;
         private HScrollBar hscrollCircumference;
         private CheckBox chkboxCollision;
+        private CheckBox chkboxVector;
+        private CheckBox chkboxPolygon;
     }
 }

@@ -12,8 +12,8 @@ namespace DrawWithWinForm.Shapes
         public int X { get; set; }
         public int Y { get; set; }
 
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public virtual int Width { get; set; }
+        public virtual int Height { get; set; }
 
         public int XSpeed { get; set; }
         public int YSpeed { get; set; }

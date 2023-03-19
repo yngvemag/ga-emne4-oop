@@ -30,6 +30,7 @@ namespace DrawWithWinForm
             chkboxEllipse.CheckedChanged += ChkboxEllipse_CheckedChanged;
             chkboxText.CheckedChanged += ChkboxText_CheckedChanged;
             chkboxTriangle.CheckedChanged += ChkboxTriangle_CheckedChanged;
+            chkboxVector.CheckedChanged += ChkboxVector_CheckedChanged;
 
             hscrollCircumference.Maximum = (int)_maxCircumference;
             hscrollCircumference.Value = (int)_maxCircumference;
@@ -39,6 +40,8 @@ namespace DrawWithWinForm
 
             chkboxShowCircumference.Text = $"Show Circumference ({hscrollCircumference.Value})";
             chkboxShowArea.Text = $"Show Area ({hscrollArea.Value})";
+
+            chkboxPolygon.CheckedChanged += ChkboxPolygon_CheckedChanged;
 
             hscrollArea.ValueChanged += HscrollArea_ValueChanged;
             hscrollCircumference.ValueChanged += HscrollCircumference_ValueChanged;
@@ -52,6 +55,8 @@ namespace DrawWithWinForm
             StartStop();
         }
 
+
+
         private void HscrollCircumference_ValueChanged(object? sender, EventArgs e)
         {
             chkboxShowCircumference.Text = $"Show Circumference ({hscrollCircumference.Value})";
@@ -63,6 +68,25 @@ namespace DrawWithWinForm
         }
 
         #region Checkbox Changed
+
+        private void ChkboxPolygon_CheckedChanged(object? sender, EventArgs e)
+        {
+            lock (_myShapes)
+            {
+                if (!chkboxPolygon.Checked)
+                    _myShapes.RemoveAll(shape => shape is Shapes.Polygon);
+                else AddPolygons(_minShapeCount, _maxShapeCount);
+            }
+        }
+        private void ChkboxVector_CheckedChanged(object? sender, EventArgs e)
+        {
+            lock (_myShapes)
+            {
+                if (!chkboxVector.Checked)
+                    _myShapes.RemoveAll(shape => shape is Shapes.VectorLine);
+                else AddVectorLines(_minShapeCount, _maxShapeCount);
+            }
+        }
         private void ChkboxTriangle_CheckedChanged(object? sender, EventArgs e)
         {
             lock (_myShapes)
@@ -161,6 +185,48 @@ namespace DrawWithWinForm
                }));
         }
 
+        private void AddVectorLines(int min, int max)
+        {
+            Enumerable.Range(min, max).ToList()
+              .ForEach(x => _myShapes.Add(new Shapes.VectorLine(
+                  Random.Shared.Next(10, 100),
+                  Random.Shared.Next(1, 20))
+              {
+                  X = Random.Shared.Next(0, (int)(this.Width * .8)),
+                  Y = Random.Shared.Next(0, (int)(this.Height * .6)),
+                  RotateSpeed = Random.Shared.Next(-5, 5),
+                  XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
+                  YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
+                  Color = Color.FromArgb(
+                     Random.Shared.Next(0, 255),
+                     Random.Shared.Next(0, 255),
+                     Random.Shared.Next(0, 255))
+              }));
+        }
+
+        private void AddPolygons(int min, int max)
+        {
+            Enumerable.Range(min, max).ToList()
+                .ForEach(x => _myShapes.Add(new Polygon(
+                        Random.Shared.Next(5, 50),
+                        Random.Shared.Next(3, 12))
+                {
+                    X = Random.Shared.Next(0, (int)(this.Width * .8)),
+                    Y = Random.Shared.Next(0, (int)(this.Height * .6)),
+                    RotateSpeed = Random.Shared.Next(-5, 5),
+                    XSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
+                    YSpeed = Random.Shared.Next(_minSpeed, _maxSpeed),
+                    Color = Color.FromArgb(
+                     Random.Shared.Next(0, 255),
+                     Random.Shared.Next(0, 255),
+                     Random.Shared.Next(0, 255)),
+                    FillColor = Color.FromArgb(
+                     Random.Shared.Next(0, 255),
+                     Random.Shared.Next(0, 255),
+                     Random.Shared.Next(0, 255))
+                }));
+        }
+
         #endregion
         private void Draw()
         {
@@ -198,7 +264,7 @@ namespace DrawWithWinForm
 
                                 });
 
-                                
+
                             }
                         }
 
@@ -220,8 +286,17 @@ namespace DrawWithWinForm
             {
                 StartStop();
             }
+            else if (e.KeyCode.Equals(Keys.Enter))
+            {
+                _myShapes.Where(x => x is Polygon).ToList()
+                    .ForEach(shape =>
+                    {
+                        var pol = shape as Polygon;
+                        if (pol != null)
+                            pol.IsDrawingNumbers = !pol.IsDrawingNumbers;
+                    });
+            }
         }
-
         private void StartStop()
         {
             btnStartStop.Text = "Start";
@@ -296,7 +371,7 @@ namespace DrawWithWinForm
 
         private void txtAdd_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && chkboxText.Checked)
+            if(e.KeyCode == Keys.Enter && chkboxText.Checked)
             {
                 AddTekst();
             }
@@ -306,5 +381,6 @@ namespace DrawWithWinForm
             _isRunning = false;
             Thread.Sleep(100);
         }
+
     }
 }
