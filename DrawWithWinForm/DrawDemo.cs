@@ -183,7 +183,6 @@ namespace DrawWithWinForm
                    Random.Shared.Next(0, 255))
                }));
         }
-
         private void AddVectorLines(int min, int max)
         {
             Enumerable.Range(min, max).ToList()
@@ -202,13 +201,12 @@ namespace DrawWithWinForm
                      Random.Shared.Next(0, 255))
               }));
         }
-
         private void AddPolygons(int min, int max)
         {
             Enumerable.Range(min, max).ToList()
                 .ForEach(x => _myShapes.Add(new Polygon(
-                        Random.Shared.Next(10, 40),
-                        Random.Shared.Next(3, 12))
+                        Random.Shared.Next(20, 150),
+                        Random.Shared.Next(3, 20))
                 {
                     X = Random.Shared.Next(0, (int)(this.Width * .8)),
                     Y = Random.Shared.Next(0, (int)(this.Height * .6)),
@@ -327,6 +325,12 @@ namespace DrawWithWinForm
 
                 if (chkboxEllipse.Checked)
                     AddEllipse(_minShapeCount, _maxShapeCount);
+
+                if (chkboxPolygon.Checked)
+                    AddPolygons(_minShapeCount, _maxShapeCount);
+
+                if(chkboxVector.Checked)
+                    AddVectorLines(_minShapeCount, _maxShapeCount);
 
                 Draw();
             }

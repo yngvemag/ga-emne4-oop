@@ -11,12 +11,12 @@ namespace DrawWithWinForm.Shapes
 {
     internal class Polygon : VectorLine
     {
-        protected Point[]? _points;
+        protected Point[]? _vectorPointsAdded;
 
         public Polygon(double length, int count)
             : base(length, count)
         {
-            _points = new Point[_vectorCount];
+            _vectorPointsAdded = new Point[_vectorCount];
         }
 
         protected void InitPoints()
@@ -24,11 +24,11 @@ namespace DrawWithWinForm.Shapes
             int x = X;
             int y = Y;
 
-            if (_points != null)
+            if (_vectorPointsAdded != null)
             {
                 for (var i = 0; i < _vectorCount; i++)
                 {
-                    _points[i] = new Point(x, y);
+                    _vectorPointsAdded[i] = new Point(x, y);
 
                     // next x and y
                     x += (int)_vectors[i].XLength;
@@ -42,26 +42,23 @@ namespace DrawWithWinForm.Shapes
         protected void DrawPolygon(Graphics g, int formWidth, int formHeight)
         {
             Pen p = new Pen(Color);
-            if (_points != null)
+            if (_vectorStopPoints != null)
             {
                 for (int i = 0; i < _vectorCount; ++i)
-                {
-                    int a = i;
-                    int b = (i + 1 == _vectorCount) ? 0 : i + 1;
-                    g.DrawLine(p, _points[i], _points[b]);
-                }
+                    g.DrawLine(p, _vectorStopPoints[i], _vectorStopPoints[(i+1)%_vectorCount]);
 
-                g.FillPolygon(new SolidBrush(this.FillColor), _points);
+                g.FillPolygon(new SolidBrush(this.FillColor), _vectorStopPoints);
             }
         }
         protected void DrawNumberString(Graphics g, int formWidth, int formHeight)
         {
-            if (_points != null)
+            if (_vectorPointsAdded != null)
             {
-                int x = (int)_points.Average(x => x.X) - 10;
-                int y = (int)_points.Average(x => x.Y) - 10;
+                //int x = (int)_vectorPointsAdded.Average(x => x.X) - 10;
+                //int y = (int)_vectorPointsAdded.Average(x => x.Y) - 10;
 
-                g.DrawString($"{_vectorCount}", new Font("Arial", 8), new SolidBrush(Color.White), new Point(x, y));
+                int size = 8;
+                g.DrawString($"{_vectorCount}", new Font("Arial", size), new SolidBrush(Color.White), new Point(X-size/2, Y-size/2));
             }
         }
         public override void Draw(Graphics g, int formWidth, int formHeight)
