@@ -32,18 +32,16 @@ namespace DrawWithWinForm.Shapes
         public override void Draw(Graphics g, int formWidth, int formHeight)
         {
             UpdatePoints();
-
             Pen p = new(this.Color);
-
-            g.DrawLine(p, _pointA, _pointB);
-            g.DrawLine(p, _pointB, _pointC);
-            g.DrawLine(p, _pointC, _pointA);
-
             if (_points != null)
+            {
+                for( var i = 0; i < _points.Length; i++ )
+                    g.DrawLine(p, _points[i], _points[(i + 1)%_points.Length]);
                 g.FillPolygon(new SolidBrush(this.FillColor), _points);
-
+            }
+                
             base.Move();
-            base.BounceEdges(formWidth, formHeight);
+            base.BounceOnEdges(formWidth, formHeight);
         }
 
     }

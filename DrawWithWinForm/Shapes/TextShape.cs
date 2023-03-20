@@ -19,7 +19,7 @@ namespace DrawWithWinForm.Shapes
                 new SolidBrush(Color), new Point(X, Y));
 
             Move();
-            BounceEdges(formWidth, formHeight);
+            BounceOnEdges(formWidth, formHeight);
         }
 
         public override void DrawAreaString(Graphics g, int formWidth, int formHeight)

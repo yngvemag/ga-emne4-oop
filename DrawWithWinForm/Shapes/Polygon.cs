@@ -74,7 +74,7 @@ namespace DrawWithWinForm.Shapes
             RotateVectors();
             Move();
 
-            BounceEdges(formWidth, formHeight);
+            BounceOnEdges(formWidth, formHeight);
         }
 
         public override double GetArea()

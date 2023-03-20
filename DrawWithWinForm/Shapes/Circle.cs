@@ -26,7 +26,7 @@ namespace DrawWithWinForm.Shapes
             g.FillEllipse(new SolidBrush(FillColor), 
                 new System.Drawing.Rectangle(X, Y, Diameter, Diameter));
             base.Move();
-            base.BounceEdges(formWidth, formHeight);
+            base.BounceOnEdges(formWidth, formHeight);
         }
     }
 }

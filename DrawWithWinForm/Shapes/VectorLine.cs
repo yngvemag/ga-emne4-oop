@@ -63,7 +63,6 @@ namespace DrawWithWinForm.Shapes
                 Pen p = new(Color);
                 foreach (var pStop in _vectorStopPoints)             
                     g.DrawLine(p, pStart, pStop);
-
             }
         }
 
@@ -72,7 +71,7 @@ namespace DrawWithWinForm.Shapes
             DrawVectors(g, formWidth, formHeight);
             RotateVectors();
             Move();
-            BounceEdges(formWidth, formHeight);
+            BounceOnEdges(formWidth, formHeight);
         }
         public override double GetArea() => 0;
         public override double GetCircumference() => 0;

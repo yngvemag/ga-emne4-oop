@@ -9,20 +9,17 @@ namespace DrawWithWinForm.Shapes
 {
     internal abstract class Shape
     {
+        #region Properties
         public int X { get; set; }
         public int Y { get; set; }
-
         public virtual int Width { get; set; }
         public virtual int Height { get; set; }
-
         public int XSpeed { get; set; }
         public int YSpeed { get; set; }
-
         public Color Color { get; set; }
-
         public Color FillColor { get; set; }
 
-        public bool IsCollion { get; set; }
+        public bool IsCollion { get; set; }        
 
         public Point CenterPos 
         {
@@ -34,14 +31,19 @@ namespace DrawWithWinForm.Shapes
             }  
         }
 
-        public static double Distance(Shape a, Shape b)
+        #endregion
+
+        public abstract double GetArea();
+        public abstract double GetCircumference();
+
+        public abstract void Draw(Graphics g, int formWidth, int formHeight);
+        public static double GetDistance(Shape a, Shape b)
         {
             int xdiff = b.CenterPos.X - a.CenterPos.X;
             int ydiff = b.CenterPos.Y - a.CenterPos.Y;
 
             return Math.Sqrt(xdiff ^ 2 + ydiff ^ 2);
         }
-
         public static void CollisionTest(Shape a, Shape b)
         {
             if (a.X == b.X && a.Y == b.Y)
@@ -57,13 +59,7 @@ namespace DrawWithWinForm.Shapes
                 b.IsCollion = true;
             }
         }
-
-        public abstract void Draw(Graphics g, int formWidth, int formHeight);
-        public abstract double GetArea();
-        public abstract double GetCircumference();
-
         
-
         public virtual void DrawAreaString(Graphics g, int formWidth, int formHeight)
         {
             g.DrawString(
@@ -72,7 +68,6 @@ namespace DrawWithWinForm.Shapes
                new SolidBrush(Color.White),
                new Point(X, Y - 20));
         }
-
         public virtual void DrawCirmuferenceString(Graphics g, int formWidth, int formHeight)
         {
             g.DrawString(
@@ -87,8 +82,7 @@ namespace DrawWithWinForm.Shapes
             X += XSpeed;
             Y += YSpeed;
         }
-
-        protected virtual void BounceEdges(int formWidth, int formHeight)
+        protected virtual void BounceOnEdges(int formWidth, int formHeight)
         {
             if (X + Width > formWidth || X < 0)
                 XSpeed *= -1;

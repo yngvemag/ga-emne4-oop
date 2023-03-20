@@ -3,7 +3,7 @@
   <Class Name="DrawWithWinForm.Shapes.Shape">
     <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQBYAAAgAAAiAAAEAACIAAAYBAAAIAkAgAYAA=</HashCode>
+      <HashCode>AAAAAABQBYAAAgAAACAAAEAACIAAAYAAAIIAkAgAYAA=</HashCode>
       <FileName>Shapes\Shape.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,13 +36,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="DrawWithWinForm.Shapes.Polygon">
-    <Position X="12" Y="7.75" Width="1.5" />
-    <InheritanceLine Type="DrawWithWinForm.Shapes.VectorLine" FixedToPoint="true">
-      <Path>
-        <Point X="11.25" Y="9.325" />
-        <Point X="12.312" Y="9.325" />
-      </Path>
-    </InheritanceLine>
+    <Position X="9.75" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAiAAIAAABAAAAIAAAKAIAAAAEAAAAAA=</HashCode>
       <FileName>Shapes\Polygon.cs</FileName>

@@ -21,7 +21,7 @@ namespace DrawWithWinForm.Shapes
                 new System.Drawing.Rectangle(X, Y, Width , Height));
 
             base.Move();
-            base.BounceEdges(formWidth, formHeight);
+            base.BounceOnEdges(formWidth, formHeight);
         }
       
     }
