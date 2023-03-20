@@ -77,7 +77,17 @@ namespace DrawWithWinForm.Shapes
             BounceEdges(formWidth, formHeight);
         }
 
-        public override double GetArea() => ((int)_vektorLength * 2) ^ 2;
+        public override double GetArea()
+        {
+            // get length of one side
+            double innerAngleRad = (2*Math.PI) / _vectorCount;
+            double outerAngleRad = (Math.PI - innerAngleRad) / 2;
+
+            double side = (Math.Sin(innerAngleRad) * _vektorLength) / Math.Sin(outerAngleRad);
+
+            double areal = ((side / 2) * _vektorLength) / 2;
+            return areal * _vectorCount;
+        }
 
         public override double GetCircumference() => _vectors.Sum(v => v.Length);
 
