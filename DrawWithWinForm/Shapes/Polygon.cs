@@ -83,9 +83,9 @@ namespace DrawWithWinForm.Shapes
             double innerAngleRad = (2*Math.PI) / _vectorCount;
             double outerAngleRad = (Math.PI - innerAngleRad) / 2;
 
-            double side = (Math.Sin(innerAngleRad) * _vektorLength) / Math.Sin(outerAngleRad);
+            double sideLength = (Math.Sin(innerAngleRad) * _vektorLength) / Math.Sin(outerAngleRad);
 
-            double areal = ((side / 2) * _vektorLength) / 2;
+            double areal = ((sideLength / 2) * _vektorLength) / 2;
             return areal * _vectorCount;
         }
 
