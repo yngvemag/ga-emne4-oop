@@ -24,7 +24,7 @@ namespace DrawWithWinForm.Libs
             DirectionInDegree = directionInDegree;
 
             // set radians
-            _radians = (DirectionInDegree * 2* Math.PI) / 360;
+            _radians = (DirectionInDegree * Math.PI) / 180;
             CalculateXYLength();
         }
 

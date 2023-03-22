@@ -53,6 +53,7 @@ namespace DrawWithWinForm
             UpdateStyles();
 
             StartStop();
+
         }
 
         #region Scrollbars ValueChanged

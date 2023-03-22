@@ -41,7 +41,9 @@ namespace DrawWithWinForm.Shapes
             for (var i = 0; i < _vectorCount; i++)
             {
                 _vectors[i] = new Libs.Vector(_vektorLength, angle);
-                _vectorStopPoints[i] = new Point(X + (int)_vectors[i].XLength, Y + (int)_vectors[i].YLength);
+
+                // 'y' is inversed compared to coordinatesystem
+                _vectorStopPoints[i] = new Point(X + (int)_vectors[i].XLength, Y - (int)_vectors[i].YLength);
                 angle += angleIncrese;
             }
         }
