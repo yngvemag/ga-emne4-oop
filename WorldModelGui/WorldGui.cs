@@ -46,7 +46,8 @@ namespace WorldModelGui
 
         private void ExtractData()
         {
-            if (_worldModel == null) { return; }
+            if (_worldModel == null) return;
+
             treeViewWorld.Nodes.Clear();
 
             Func<Country, bool> countryFilter = txtCountryFilter.Text.Equals(string.Empty)
@@ -64,40 +65,55 @@ namespace WorldModelGui
                 {
                     TreeNode cntrNode = new(cntry.Name);
 
-                    TreeNode citiesNode = new("Cities");
-                    if (cntry.Cities != null)
-                    {
-                        foreach (var cty in cntry.Cities.Values)
-                        {
-                            TreeNode cityNode = new(cty.Name);
+                    AddCitiesTreeNodes(cntry, cntrNode);
 
-                            foreach (var prop in cty.GetType().GetProperties())
-                                cityNode.Nodes.Add(new TreeNode($"{prop.Name}: {prop.GetValue(cty)}"));
-
-                            citiesNode.Nodes.Add(cityNode);
-                        }
-                    }
-                    cntrNode.Nodes.Add(citiesNode);
-
-                    TreeNode languagesNode = new("Official Languages");
-                    if (cntry.Languages != null)
-                    {
-                        foreach (var lang in cntry.Languages.Values)
-                        {
-                            TreeNode langNode = new(lang.Language);
-                            languagesNode.Nodes.Add(langNode);
-                        }
-                    }
-                    cntrNode.Nodes.Add(languagesNode);
+                    AddCountryLanguagesTreeNodes(cntry, cntrNode);
 
                     // add all country properties 
                     foreach (var prop in cntry.GetType().GetProperties())
+                    {
                         cntrNode.Nodes.Add($"{prop.Name}: {prop.GetValue(cntry)}");
-
+                    }
 
                     treeViewWorld.Nodes.Add(cntrNode);
                 }
             }
+        }
+
+        private static void AddCountryLanguagesTreeNodes(Country? cntry, TreeNode cntrNode)
+        {
+            if (cntry == null) return;
+            TreeNode languagesNode = new("Official Languages");
+            if (cntry.Languages != null)
+            {
+                foreach (var lang in cntry.Languages.Values)
+                {
+                    TreeNode langNode = new(lang.Language);
+                    languagesNode.Nodes.Add(langNode);
+                }
+            }
+            cntrNode.Nodes.Add(languagesNode);
+        }
+
+        private static void AddCitiesTreeNodes(Country? cntry, TreeNode cntrNode)
+        {
+            if (cntry == null) return;
+            TreeNode citiesNode = new("Cities");
+            if (cntry.Cities != null)
+            {
+                foreach (var cty in cntry.Cities.Values)
+                {
+                    TreeNode cityNode = new(cty.Name);
+
+                    foreach (var prop in cty.GetType().GetProperties())
+                    {
+                        cityNode.Nodes.Add(new TreeNode($"{prop.Name}: {prop.GetValue(cty)}"));
+                    }
+
+                    citiesNode.Nodes.Add(cityNode);
+                }
+            }
+            cntrNode.Nodes.Add(citiesNode);
         }
 
         private void txtCountryFilter_TextChanged(object sender, EventArgs e)

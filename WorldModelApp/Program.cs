@@ -1,5 +1,6 @@
 ﻿
 using WorldModelLibrary;
+using WorldModelLibrary.models;
 
 #region Filepaths
 
@@ -30,22 +31,39 @@ if (!isLoaded)
 
 #region Print Countries with cities and languages
 
-if (worldModel.IsLoadedSucessfully)
+if (worldModel.IsLoadedSucessfully && worldModel.Countries!=null && worldModel.Countries.Any())
 {
-    if (worldModel.Countries != null)
-        foreach (var cntry in worldModel.Countries)
-        {
-            Console.WriteLine($"Country: {cntry.Name}" );
-            Console.WriteLine("\tCities:");
-            if (cntry.Cities != null)
-                foreach (var cty in cntry.Cities.Values)
-                    Console.WriteLine($"\t\t{cty.Name} ({cty.Population})");
+    foreach (var cntry in worldModel.Countries)
+    {
+        ExtractCities(cntry);
+        ExtractCountryLanguages(cntry);
+    }
 
-            Console.WriteLine("\tLanguages:");
-            if (cntry.Languages != null)
-                foreach (var lang in cntry.Languages.Values)
-                    Console.WriteLine($"\t\t{lang.Language}");
-        }        
+}
+
+static void ExtractCities(Country cntry)
+{
+    Console.WriteLine($"Country: {cntry.Name}");
+    Console.WriteLine("\tCities:");
+    if (cntry.Cities != null)
+    {
+        foreach (var cty in cntry.Cities.Values)
+        {
+            Console.WriteLine($"\t\t{cty.Name} ({cty.Population})");
+        }
+    }
+}
+
+static void ExtractCountryLanguages(Country cntry)
+{
+    Console.WriteLine("\tLanguages:");
+    if (cntry.Languages != null)
+    {
+        foreach (var lang in cntry.Languages.Values)
+        {
+            Console.WriteLine($"\t\t{lang.Language}");
+        }
+    }
 }
 
 #endregion

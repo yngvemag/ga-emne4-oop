@@ -4,7 +4,11 @@ namespace GATools.String
 {
     public static class CSVTool
     {
-        public static string[] Split(string customerLine, char forceReadChar = '\"')
+        public static string[] Split(string customerLine)
+        {
+            return Split(customerLine, '\"');
+        }
+        public static string[] Split(string customerLine, char forceReadChar)
         {
             StringBuilder sb = new();
             List<string> strings = new();
@@ -13,21 +17,27 @@ namespace GATools.String
             foreach (var c in customerLine)
             {
                 if (c.Equals(forceReadChar))
-                    _forceRead = !_forceRead;
-
-                if (_forceRead) sb.Append(c);
-                else
                 {
-                    if (c.Equals(','))
-                    {
-                        strings.Add(sb.ToString());
-                        sb = new();
-                    }
-                    else sb.Append(c);
+                    _forceRead = !_forceRead;
                 }
-            }
-            strings.Add(sb.ToString());
 
+                if (_forceRead)
+                {
+                    sb.Append(c);
+                    continue;
+                }
+
+                if (!c.Equals(','))
+                {
+                    sb.Append(c);
+                    continue;
+                }
+
+                strings.Add(sb.ToString());
+                sb = new StringBuilder();
+            }
+
+            strings.Add(sb.ToString());
             return strings.ToArray();
         }
     }

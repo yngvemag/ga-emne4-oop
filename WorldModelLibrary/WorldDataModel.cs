@@ -97,7 +97,7 @@ namespace WorldModelLibrary
 
                         return new City() { Id = id, District = district, CountryCode = countryCode, Name = name, Population = population };
                     }
-                    else return null;
+                    return null;
                 });
         }
 
@@ -140,7 +140,7 @@ namespace WorldModelLibrary
                             GNP = gnpf, GNP_Old = gnpOldf, LocalName = localName, GovernmentForm = govermentForm, HeadOfState = headOfState, Capital = cap, Code2 = code2
                         };
                     }
-                    else return null;
+                    return null;
                 });
         }
 
@@ -163,7 +163,9 @@ namespace WorldModelLibrary
                     {
                         var official = true ? isOfficial.ToLower().Equals("T") : false;
                         if (!float.TryParse(percentage, CultureInfo.InvariantCulture, out float fpercentage))
+                        {
                             _log($"Failed to parse CountryLanguage.Percentage:{percentage} as float");
+                        }
 
                         return new CountryLanguage() 
                         {
@@ -183,13 +185,21 @@ namespace WorldModelLibrary
                 {
                     // legger all byene som har samme contrycode
                     if (Cities != null && Cities.Any())
+                    {
                         foreach (var cty in Cities.Where(c => c.CountryCode.Equals(cntr.Code)))
+                        {
                             cntr.AddCity(cty);
+                        }
+                    }
 
                     // legger til alle offisielle språk 
                     if (Languages != null && Languages.Any())
+                    {
                         foreach (var lang in Languages.Where(l => l.CountryCode.Equals(cntr.Code)))
+                        {
                             cntr.AddLanguage(lang);
+                        }
+                    }
                 }
             }
 
