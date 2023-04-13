@@ -79,14 +79,18 @@ namespace DrawWithWinForm.Shapes
 
         public override double GetArea()
         {
+            // areal  = 1/4 * n * s^2 * cot(PI/n) => 0.25 * n * s^2 * (1/tan(PI/n))  
+
             // get length of one side
             double innerAngleRad = (2*Math.PI) / _vectorCount;
             double outerAngleRad = (Math.PI - innerAngleRad) / 2;
 
             double sideLength = (Math.Sin(innerAngleRad) * _vektorLength) / Math.Sin(outerAngleRad);
 
-            double areal = ((sideLength / 2) * _vektorLength) / 2;
-            return areal * _vectorCount;
+            double areal = 0.25 * _vectorCount * Math.Pow(sideLength, 2) * (1/Math.Tan(Math.PI / _vectorCount));
+            return areal;
+            //double areal = ((sideLength / 2) * _vektorLength) / 2;
+            //return areal * _vectorCount;
         }
 
         public override double GetCircumference() => _vectors.Sum(v => v.Length);

@@ -100,7 +100,9 @@ namespace ClassicModelsLibrary
                     // amount -> double (6066.78 -> double)
                     // 3.14 engelsk 
                     // 3,14 norsk
-                    double.TryParse(amountStr, CultureInfo.InvariantCulture, out double amount);
+                    if (!double.TryParse(amountStr, CultureInfo.InvariantCulture, out double amount))
+                        Console.WriteLine("Error parsing double");
+
 
                     /*
                      * 2004-10-19
@@ -114,7 +116,9 @@ namespace ClassicModelsLibrary
 		                ss : Sekundene, representert med to sifre, for eksempel "45".
                         fff : Millisekundene, representert med tre sifre, for eksempel "789".
                      */
-                    DateTime.TryParseExact(paymentDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture,DateTimeStyles.None, out DateTime paymentDate);
+                    DateTime.TryParseExact(paymentDateStr, "yyyy-MM-dd", 
+                        CultureInfo.InvariantCulture,DateTimeStyles.None, out DateTime paymentDate);
+
                     Payment payment = new()
                     {
                         Amount = amount,

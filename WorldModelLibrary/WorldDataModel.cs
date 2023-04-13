@@ -121,6 +121,7 @@ namespace WorldModelLibrary
                     {
                         if (!float.TryParse(surfaceArea, CultureInfo.InvariantCulture, out float surfArea))
                             _log($"Failed to parse Country.SurfaceArea:{surfaceArea} as float");
+
                         if (!int.TryParse(indepYear, out int indYear))
                             _log($"Failed to parse Country.IndepYear:{indepYear} as int");
                         if (!uint.TryParse(population, out uint pop))
@@ -162,6 +163,7 @@ namespace WorldModelLibrary
                     if (arr is [var countryCode, var language, var isOfficial, var percentage])
                     {
                         var official = true ? isOfficial.ToLower().Equals("T") : false;
+
                         if (!float.TryParse(percentage, CultureInfo.InvariantCulture, out float fpercentage))
                         {
                             _log($"Failed to parse CountryLanguage.Percentage:{percentage} as float");
@@ -172,7 +174,7 @@ namespace WorldModelLibrary
                             CountryCode = countryCode, Language = language, IsOfficial = official, Percentage = fpercentage
                         };
                     }
-                    else return null;
+                    return null;
                 });
         }
 

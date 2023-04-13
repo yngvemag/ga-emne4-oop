@@ -66,7 +66,6 @@ namespace WorldModelGui
                     TreeNode cntrNode = new(cntry.Name);
 
                     AddCitiesTreeNodes(cntry, cntrNode);
-
                     AddCountryLanguagesTreeNodes(cntry, cntrNode);
 
                     // add all country properties 
@@ -82,44 +81,43 @@ namespace WorldModelGui
 
         private static void AddCountryLanguagesTreeNodes(Country? cntry, TreeNode cntrNode)
         {
-            if (cntry == null) return;
+            if (cntry == null || cntry.Languages == null || cntry.Languages.Values == null) return;
+
             TreeNode languagesNode = new("Official Languages");
-            if (cntry.Languages != null)
+            foreach (var lang in cntry.Languages.Values)
             {
-                foreach (var lang in cntry.Languages.Values)
-                {
-                    TreeNode langNode = new(lang.Language);
-                    languagesNode.Nodes.Add(langNode);
-                }
+                TreeNode langNode = new(lang.Language);
+                languagesNode.Nodes.Add(langNode);
             }
+            
             cntrNode.Nodes.Add(languagesNode);
         }
 
         private static void AddCitiesTreeNodes(Country? cntry, TreeNode cntrNode)
         {
-            if (cntry == null) return;
+            if (cntry == null || cntry.Cities == null || cntry.Cities.Values == null) return;
             TreeNode citiesNode = new("Cities");
-            if (cntry.Cities != null)
+
+            foreach (var cty in cntry.Cities.Values)
             {
-                foreach (var cty in cntry.Cities.Values)
+                TreeNode cityNode = new(cty.Name);
+                foreach (var prop in cty.GetType().GetProperties())
                 {
-                    TreeNode cityNode = new(cty.Name);
-
-                    foreach (var prop in cty.GetType().GetProperties())
-                    {
-                        cityNode.Nodes.Add(new TreeNode($"{prop.Name}: {prop.GetValue(cty)}"));
-                    }
-
-                    citiesNode.Nodes.Add(cityNode);
+                    cityNode.Nodes.Add(new TreeNode($"{prop.Name}: {prop.GetValue(cty)}"));
                 }
+
+                citiesNode.Nodes.Add(cityNode);
             }
+        
             cntrNode.Nodes.Add(citiesNode);
         }
 
         private void txtCountryFilter_TextChanged(object sender, EventArgs e)
         {
             if (LoadData())
+            {
                 ExtractData();
+            }
         }
     }
 }
